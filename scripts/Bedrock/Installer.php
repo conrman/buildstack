@@ -69,6 +69,8 @@ class Installer {
 
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
 
+			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
+
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;

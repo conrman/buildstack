@@ -10,7 +10,7 @@ sql-dump-*.sql
 .env
 .env.*
 !.env.example
-.vhost.example
+!.vhost.example
 .vhost
 
 # Application
