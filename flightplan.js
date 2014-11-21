@@ -65,7 +65,7 @@ plan.remote('deploy', function(remote) {
 	remote.exec('rm -rf ' + new_release+ '/web/app/uploads && ln -s ~/' + releases_directory + '/shared/web/app/uploads ' + new_release + '/web/app/uploads')
 
 	remote.log('Running composer');
-	remote.exec('cd ' + new_release + ' && composer install');
+	remote.exec('cd ' + new_release + ' && rm -r scripts/ && composer install');
 
 	remote.log('Update current symlink');
 	remote.exec('rm ~/' + releases_directory + '/current && ln -s ~/' + new_release + ' ~/' + releases_directory + '/current');

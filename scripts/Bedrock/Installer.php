@@ -1,4 +1,5 @@
 <?php
+// composer run-script post-root-package-install
 
 namespace Bedrock;
 
@@ -16,7 +17,7 @@ class Installer {
 		'NONCE_SALT'
 	);
 
-	public static function addSalts(Event $event) {
+	public static function setupEnvironment(Event $event) {
 		$root = dirname(dirname(__DIR__));
 		$composer = $event->getComposer();
 		$io = $event->getIO();
