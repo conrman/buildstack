@@ -1,0 +1,95 @@
+{
+  "name": "mmc/bedrock",
+  "type": "project",
+  "license": "MIT",
+  "description": "A modern WordPress stack",
+  "homepage": "http://roots.io/wordpress-stack/",
+  "authors": [
+    {
+      "name": "Scott Walkinshaw",
+      "email": "scott.walkinshaw@gmail.com",
+      "homepage": "https://github.com/swalkinshaw"
+    },
+    {
+      "name": "Ben Word",
+      "email": "ben@benword.com",
+      "homepage": "https://github.com/retlehs"
+    },
+    {
+      "name": "Dustin Carlson",
+      "email": "dustin@mailmmc.com",
+      "homepage": "https://github.com/dasuchin"
+    },
+    {
+      "name": "Connor Freeman",
+      "email": "connormfreeman@gmail.com",
+      "homepage": "https://github.com/conrman"
+    }
+  ],
+  "keywords": [
+    "wordpress", "stack", "capistrano", "composer", "vagrant", "wp"
+  ],
+  "support": {
+    "issues": "https://github.com/roots/bedrock/issues",
+    "forum": "http://discourse.roots.io/category/bedrock"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "generate-salts": true
+  },
+  "autoload": {
+    "psr-0": {"Bedrock\\Installer": "scripts"}
+  },
+  "scripts": {
+    "post-install-cmd": ["Bedrock\\Installer::addSalts"]
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress/wordpress",
+        "version": "4.0.1",
+        "type": "webroot",
+        "dist": {
+          "type": "zip",
+          "url": "https://wordpress.org/latest.zip"
+        },
+        "require" : {
+          "fancyguy/webroot-installer": "1.1.0"
+        }
+      }
+    }
+  ],
+  "require": {
+      "php": ">=5.3.2",
+      "roots/soil": "3.0.0",
+      "wordpress/wordpress": ">=4.0.1",
+      "fancyguy/webroot-installer": "1.1.0",
+      "composer/installers": "v1.0.12",
+      "vlucas/phpdotenv": "~1.0.6",
+      "wpackagist-plugin/advanced-custom-fields":">=4.3.8",
+      "wpackagist-plugin/custom-post-type-ui":">=0.8.3",
+      "wpackagist-plugin/contact-form-7":"~3.9.1",
+      "wpackagist-plugin/contact-form-7-honeypot":"~1.6.1",
+      "wpackagist-plugin/contact-form-7-to-database-extension":">=2.8",
+      "wpackagist-plugin/wordpress-seo":">=1.5",
+      "wpackagist-plugin/simple-urls":">=0.9.4",
+      "wpackagist-plugin/rb-internal-links":">=2.0.16",
+      "wpackagist-plugin/widget-logic":">=0.57",
+      "wpackagist-plugin/members":">=0.2.4",
+      "wpackagist-plugin/w3-total-cache":">=0.9.4"
+  },
+  "extra": {
+    "installer-paths": {
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "webroot-dir": "web/wp",
+    "webroot-package": "wordpress/wordpress"
+  }
+}

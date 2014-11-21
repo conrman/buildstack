@@ -1,0 +1,107 @@
+
+/* Forms
+================================================================ */
+
+form {
+
+	/******************************************************************
+	Start building the basic layout for lowest resoluton
+	******************************************************************/
+
+	section {
+		margin-bottom: 0.75em;
+	}
+	.box {
+		max-width: 100%;
+		background: $input-box-background;
+		border: $input-box-border;
+		font-family: $input-box-font-family;
+		padding: 0.515em;
+		transition: 0.4s;
+		width: 100%;
+		&:focus, &:hover {
+			border-color: $brand-1;
+		}
+
+		&::-webkit-input-placeholder {
+			color: $input-box-placeholder-color;
+		}
+		&::-moz-placeholder { /* Firefox 19+ */
+			color: $input-box-placeholder-color;
+		}
+		&:-ms-input-placeholder {
+			color: $input-box-placeholder-color;
+		}
+		&:-moz-placeholder { /* Firefox 18- */
+			color: $input-box-placeholder-color;
+		}
+	}
+	label {
+		display: inline-block;
+	}
+	input {
+		border: none;
+		display: block;
+		transition: 0.4s;
+		&[type="checkbox"],
+		&[type="radio"] {
+			display: inline;
+		}
+		&[type="submit"], button {
+			background: $brand-1;
+			border: none;
+			color: white;
+			padding: 0.25em 1em;
+			display: inline-block;
+			width: 100%;
+		}
+		&:required {
+			box-shadow: none;
+		}
+	}
+	select {
+		color: $base-text-color;
+
+		&.box {
+			padding: 0.44em !Important;
+		}
+	}
+
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+
+	@media (min-width: $breakpoint-3) {
+		input {
+			&[type="submit"], button {
+				width: auto;
+			}
+		}
+	}
+
+	.submit-button {
+		font-family: $font-2;
+		text-transform: uppercase;
+	}
+
+	.input-group {
+		@extend .clearfix;
+	}
+
+	.search-field {
+		border: 0;
+		float: left;
+
+		@include placeholder {
+			color: white;
+		}
+
+		+ .search-submit {
+			background: transparent;
+			padding: 0.1em 2em;
+			line-height: 2.1;
+			border: 0;
+		}
+	}
+
+} // End form

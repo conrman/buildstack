@@ -1,0 +1,26 @@
+{
+  "name": "bedrock",
+  "version": "7.0.0",
+  "author": "Dustin Carlson <dustin@mailmmc.com>, Connor Freeman <connor@mailmmc.com>",
+  "homepage": "http://www.mixedmedicreations.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dasuchin/roots.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dasuchin/roots/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "scripts": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "flightplan": "0.4.5"
+  }
+}

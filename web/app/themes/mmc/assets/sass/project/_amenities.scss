@@ -1,0 +1,143 @@
+
+/* Amenities Page
+================================================================ */
+
+main.amenities {
+
+	figure:not(:first-child) {
+		margin: 2em 0;
+	}
+
+	.disclaimer {
+		font-size: 8px;
+		font-weight: bold;
+	}
+
+	.content {
+		text-align: center;
+	}
+
+	.feature {
+		border-top: 5px solid $brand-2;
+		border-bottom: 5px solid $brand-3;
+		position: relative;
+
+		> img {
+			vertical-align: middle;
+		}
+	}
+
+	.feature-caption {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		display: table;
+		height: 1em;
+		width: 100%;
+
+		@-moz-document url-prefix() { 
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		> [class*="caption"] {
+			position: relative;
+			font-size: 1rem;
+			line-height: 1.5;
+
+			&:not(.caption-2) > span {
+				text-shadow: 0 1px 0 $black;
+			}
+		}
+	}
+
+	.caption-1 {
+		color: $brand-3;
+		left: 5%;
+		max-width: 150px;
+	}
+
+	.caption-2 {
+		color: $brand-5;
+		left: 5%;
+		max-width: 250px;
+	}
+
+	.caption-3 {
+		color: $white;
+		left: 65%;
+		max-width: 100px;
+		text-align: center;
+	}
+
+	@media (min-width: $breakpoint-1) {
+		.feature-caption > [class*="caption"] {
+			font-size: 1.3rem;
+		}
+
+		.caption-1 {
+			max-width: 200px;
+			left: 10%;
+		}
+
+		.caption-2 {
+			left: 10%;
+		}
+
+		.caption-3 {
+			max-width: 150px;
+			left: 60%;
+		}
+	}
+
+	@media (min-width: $breakpoint-2) {
+
+		.feature-caption > [class*="caption"] {
+			font-size: 1.6rem;
+		}
+
+		.caption-1 {
+			left: 15%;
+		}
+
+		.caption-2 {
+			max-width: 350px;
+			left: 15%;
+		}
+
+		.caption-3 {
+			max-width: 350px;
+			left: 55%;
+		}
+	}
+	@media (min-width: $breakpoint-3) {
+		.content {
+			-webkit-columns: 2;
+			-moz-columns: 2;
+			-o-columns: 2;
+			columns: 2;
+		}
+
+		.feature-caption > [class*="caption"] {
+			font-size: 2.2rem;
+		}
+
+		.caption-1 {
+			max-width: 350px;
+		}
+
+		.caption-2 {
+			max-width: 450px;
+		}
+
+		.caption-3 {
+			max-width: 400px;
+		}
+	}
+	@media (min-width: $breakpoint-4) {
+	}
+
+} /* End .amenities */

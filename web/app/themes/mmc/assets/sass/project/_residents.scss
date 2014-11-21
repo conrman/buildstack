@@ -1,0 +1,145 @@
+
+/* Residents Page
+================================================================ */
+
+main.residents {
+
+
+
+	/******************************************************************
+	Styles applied to all pages in theme
+	******************************************************************/
+
+	.content {
+		margin-bottom: 1em;
+	}
+
+	.bar {
+		position: relative;
+		top: -1px;
+		z-index: 3;
+
+		> img { width: 100%; }
+
+		> div > img {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: -1.5em;
+			
+			bottom: 0;
+			margin: auto;
+			z-index: 3;
+			padding: 0 5em;
+		}
+	}
+
+	.romance {
+
+		background: url(../images/bg_homepage_map.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 100%;
+		height: 20vh;
+		max-height: 200px;
+		position: relative;
+
+		&:after, &:before {
+			content: '';
+			display: table;
+			height: 5px;
+			width: 100%;
+			position: absolute;
+		}
+		&:after {
+			background: $brand-3;
+			top: 10px;
+		}
+		&:before {
+			background: $brand-2;
+			top: 21px;
+		}
+
+		.romance-wrapper {
+			border-top: 5px solid $brand-2;
+		}
+
+		h1 {
+			color: $brand-1;
+		}
+	}
+
+	.romance-thumbnails-wrapper {
+		position: relative;
+		margin-top: 3.5em;
+
+		.romance-thumbnails {
+			position: absolute;
+			width: 100%; 
+			z-index: 333;
+			margin-bottom: 3em;
+		}
+	}
+
+	.container > h1 {
+		margin: 1em auto;
+	}
+
+	.button.large {
+		padding: 1em;
+
+		h2 {
+			margin: 0;
+			text-transform: capitalize;
+		}
+
+		span.large {
+			font-size: 3rem;
+		}
+	}
+
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+
+	@media (min-width: $breakpoint-1) {
+		.romance {
+			height: 30vh;
+			max-height: 250px;
+		}
+
+		.romance > .romance-wrapper {
+			max-height: 100%;
+		}
+
+		.romance-thumbnails-wrapper {
+			margin-top: -2em;
+		}
+
+		.content {
+			margin-bottom: 8em;
+		}
+
+		.romance > .romance-wrapper {
+			height: 30vh;
+		}
+	}
+
+	@media (min-width: $breakpoint-2) {
+		.romance-thumbnails-wrapper {
+			margin-top: -4em;
+		}
+
+	}
+
+	@media (min-width: $breakpoint-3) {
+		.romance-thumbnails-wrapper {
+			margin-top: -6em;
+		}
+	}
+
+	@media (min-width: $breakpoint-4) {
+	}
+
+} // End .residents

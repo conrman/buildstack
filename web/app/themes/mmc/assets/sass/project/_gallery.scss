@@ -1,0 +1,79 @@
+
+/* Gallery Page
+================================================================ */
+
+main.gallery {
+
+	/******************************************************************
+	Start building the basic layout for lowest resoluton
+	******************************************************************/
+
+	.grid-gallery {
+		margin: 1em 0;
+
+		.grid-item {
+			text-align: center;
+			padding: 0;
+		}
+	}
+
+	.bar {
+		background-image: url(../images/gfx_gallery_blue_grungy_bar.png);
+		background-repeat: repeat-x;
+		border-top: 5px solid $brand-3;
+		display: table;
+		text-align: center;
+		position: relative;
+		height: 8em;
+		width: 100%;
+
+		h2 {
+			color: $white;
+			display: table-cell;
+			height: 100%;
+			width: 100%;
+			vertical-align: middle;
+		}
+	}
+
+
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+
+	@media (min-width: $breakpoint-1) {
+		.grid-gallery .grid-item:nth-last-child(-n + 1) {
+			width: 100%;
+		}
+		
+		.grid-gallery .grid-item {
+			width: 50%;
+			float: left;
+			padding: 1em;
+		}
+	}
+
+	@media (min-width: $breakpoint-2) {
+		.grid-gallery .grid-item {
+			width: 33.333333333%;
+		}
+	}
+
+	@media (min-width: $breakpoint-3) {
+		.bar {
+			height: 5.5em;
+		}
+		
+		.grid-gallery .grid-item {
+			width: 25%;
+		}
+
+		.grid-gallery .grid-item:nth-last-child(-n+3) {
+			width: 33.33333%;
+		}
+	}
+
+	@media (min-width: $breakpoint-4) {
+	}
+
+} /* End .gallery */

@@ -1,0 +1,105 @@
+
+/* Header
+================================================================ */
+
+.app-header {
+
+	background: $app-header-background;
+
+
+	/******************************************************************
+	Start building the basic layout for lowest resoluton
+	******************************************************************/
+
+	.info-wrapper {
+		display: table;
+		width: 100%;
+		text-align: right;
+		padding-right: 1.15em;
+
+		address {
+			display: inline-block;
+			padding-right: 0.44em;
+		}
+
+		.phone-number {
+			font-size: 2rem;
+			line-height: 1;
+		}
+
+		.lease-online {
+			margin: 0 0.44em;
+		}
+
+		.info-social {
+			display: inline-block;
+		}
+
+		.fa-stack {
+			transition: all 0.5s ease;
+			.fa-circle {
+				color: $brand-1;
+			}
+			.fa-facebook {
+				color: $white;
+			}
+			&:hover .fa-circle {
+				color: $brand-2;
+			}
+		}
+	}
+
+	.header-wrapper {
+		padding: 0 2em;
+	}
+
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+	@media (max-width: $breakpoint-1) {
+		.info-wrapper {
+			background: $brand-2;
+			position: absolute;
+			left: 0;
+			right: 0;
+			padding: 0 1em 0.5em;
+		}
+
+		.phone-number {
+			color: $white;
+			float: left;
+		}
+
+		.info-social {
+			float: right;
+			margin-top: 0.5em;
+		}
+
+	}
+
+	@media (min-width: $breakpoint-1) {
+	}
+
+	@media (max-width: $breakpoint-3) {
+		.fa-stack {
+			height: 2.5em;
+		}
+	}
+
+	@media (min-width: $breakpoint-3) {
+		.info-wrapper {
+			padding-top: 1em;
+		}
+
+		.header-wrapper {
+			display: table;
+			width: 100%;
+		}
+
+		.logo, .main-nav {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+
+} // End .app-header

@@ -1,0 +1,15 @@
+@function brandColors($color) {
+	@return nth($brand-colors, index($brand-names, $color));
+}
+
+@function socialColors($color) {
+	@return nth($social-colors, index($social-names, $color));
+}
+
+
+@mixin placeholder {
+	::-webkit-input-placeholder {@content }
+	:-moz-placeholder           {@content }
+	::-moz-placeholder          {@content }
+	:-ms-input-placeholder      {@content }
+}

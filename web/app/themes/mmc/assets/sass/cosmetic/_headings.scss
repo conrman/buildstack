@@ -1,0 +1,60 @@
+
+/* Headings
+================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+
+	line-height: $heading-line-height;
+	font-family: $heading-font-family;
+	text-transform: $heading-text-transform;
+
+	b {
+		font-weight: bolder;
+	}
+	i {
+		font-style: normal;
+		color: $heading-style-color;
+	}
+	strong {
+		text-transform: uppercase;
+		font-weight: lighter;
+	}
+	em {
+		font-weight: lighter;
+		font-weight: 100;
+		font-style: normal;
+	}
+	p {
+		font-weight: normal;
+	}
+	&.highlight {
+		margin-left: 0.3em;
+		margin-right: 0.3em;
+		line-height: 1.45;
+		> b {
+			background: $heading-highlight-background;
+			color: white;
+			font-weight: lighter;
+			padding-bottom: 3px;
+			box-shadow: 0.3em 0 0 $heading-highlight-background, -0.3em 0 0 $heading-highlight-background;
+			text-shadow: none;
+		}
+		@-moz-document url-prefix() {
+			box-shadow: none;
+			margin-left: 0;
+			margin-right: 0;
+			padding: 0 0.3em;
+			> b {
+				box-decoration-break: clone;
+			}
+		}
+	}
+	&.dotted {
+		border-bottom: 1px dotted rgba(0,0,0,0.2);
+		padding-bottom: 0.75rem;
+		a {
+			color: inherit;
+		}
+	}
+
+} // End h1, h2, h3, h4, h5, h6

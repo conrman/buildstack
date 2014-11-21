@@ -1,0 +1,183 @@
+
+/* Map
+================================================================ */
+
+#map {
+	position: relative;
+
+
+	/******************************************************************
+	Start building the basic layout for lowest resoluton
+	******************************************************************/
+
+
+	$map-nav-categories: shop dine caffeine excite;
+	@each $category in $map-nav-categories {
+		.map-nav-link > .#{$category}:first-child {
+			@extend .icon-gfx_location_#{$category};
+
+			&.active,
+			&:hover {
+				@extend .icon-gfx_location_#{$category}_over;
+			}
+		}
+	}
+
+	.map-nav-link {
+		.nav-item {
+			margin: 3em auto;
+		}
+
+		.hotspots .hotspot {
+			.directions,
+			.website {
+				display: none;
+			}
+		}
+	}
+
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+
+	@media (max-width: $breakpoint-1) {
+		
+	}
+
+	@media (min-width: $breakpoint-1) {
+
+		.map-nav-link {
+			cursor: pointer;
+			
+			&.active {
+				.nav-item {
+					&:after {
+						content: '';
+						width: 0;
+						height: 0;
+						border-top: 10px solid transparent;
+						border-bottom: 10px solid transparent;
+						border-left: 10px solid rgba($white, 0.7);
+						position: absolute;
+						left: 100%;
+						margin-top: 1.5em;
+					}
+					+ .hotspots > div {
+						display: block;
+					}
+				}
+			}
+		}
+
+	}
+
+	@media (max-width: $breakpoint-2) {
+		.map-navigation {
+			display: none;
+		}
+
+		.map-nav-link {
+			background: $brand-1;
+			text-align: center;
+			padding: 10px 0;
+			margin-bottom: 2px;
+
+
+			.nav-item {
+				margin: .2em auto;
+			}
+
+			&.active {
+				padding-bottom: 0;
+
+				.nav-item {
+					margin-bottom: 10px;
+				}
+
+				.hotspots {
+					display: block;
+				}
+			}
+
+			.hotspots {
+				display: none;
+				background: $body-background;
+				padding: 10px 0;
+
+				.hotspot {
+					cursor: normal;
+					margin-bottom: 20px;
+					font-family: $font-2;
+					font-weight: 600;
+
+					.directions,
+					.website {
+						display: block;
+						font-size: 14px;
+						color: $black;
+						padding-top: 5px;
+					}
+
+					.title {
+						font-size: 16px;
+						text-transform: uppercase;
+						color: $black;
+					}
+				}
+			}
+		}
+	}
+
+	@media (min-width: $breakpoint-2) {
+		#map-canvas {
+			height: 887px;
+		}
+
+		.hotspots {
+			position: absolute;
+			left: 100%;
+			margin-top: -75%;
+
+			a {
+				color: $brand-2;
+				font-size: 1rem;
+			}
+
+			> div {
+				display: none;
+
+				cursor: pointer;
+				background: $white;
+				color: $brand-2;
+				margin: 2px 0 2px 2em;
+				min-width: 235px;
+				text-align: center;
+			}
+		}
+
+		.map-nav-wrapper {
+			background: rgba($white, 0.7);
+
+			width: 215px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999999;
+		}
+
+		.map-navigation {
+			position: absolute;
+			bottom: 2em;
+			width: 100%;
+			z-index: 99999;
+
+			> [class*="icon"] {
+				cursor: pointer;
+				display: block;
+				margin: 1em auto;
+			}
+		}
+	}
+
+} /* End #map */
