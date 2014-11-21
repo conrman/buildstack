@@ -1,4 +1,4 @@
-# [Bedrock](http://roots.io/wordpress-stack/)
+# Bedrock
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
@@ -10,33 +10,33 @@ Bedrock is a modern WordPress stack that helps you get started with the best dev
 * [Installation/Usage](#installationusage)
   * [via Composer](#using-create-project)
   * [Manually](#manually)
-* [Deploying with Capistrano](#deploying-with-capistrano)
+* [Deploying with Flightplan](#deploying-with-flightplan)
   * [Steps](#deployment-steps)
-* [Documentation](#deploying-with-capistrano)
+* [Documentation](#deploying-with-flightplan)
   * [Folder Structure](#folder-structure)
   * [Configuration Files](#configuration-files)
   * [Environment Variables](#environment-variables)
   * [Composer](#composer)
-  * [Capistrano](#capistrano)
+  * [Flightplan](#flightplan)
   * [WP-CLI](#wp-cli)
-  * [Vagrant/Ansible](#vagrantansible)
 * [Contributing](#contributing)
 * [Support](#support)
 
 ## Quick Start
 
-Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) to get started with a development VM customized for Bedrock.
+run `composer -g config repositories.mmc/bedrock vcs git@bitbucket.org:mixedmediacreations/bedrock.git` to add this package to Composer.
 
-Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details) to just get a new copy of Bedrock locally.
+You can then run `composer create-project mmc/bedrock <path>` to create a project (see [Installation/Usage](#installationusage) for more details).
+
+If your Bedrock project already exists, run `composer run-script post-root-package-install` in order to set it up locally.
 
 ## Features
 
 * Dependency management with [Composer](http://getcomposer.org)
-* Automated deployments with [Capistrano](http://www.capistranorb.com/)
+* Automated deployments with [Flightplan](http://github.com/pstadler/flightplan)
 * Better folder structure
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-* Easy server environments with [Vagrant](http://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) - [bedrock-ansible](https://github.com/roots/bedrock-ansible) on GitHub
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
@@ -48,7 +48,8 @@ Note: While this is a project from the guys behind the [Roots starter theme](htt
 
 * Git
 * PHP >= 5.3.2 (for Composer)
-* Ruby >= 1.9 (for Capistrano)
+* NPM
+* Bower
 
 If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
 
@@ -84,56 +85,30 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
 
 1. Clone/Fork repo
 2. Run `composer install`
-3. Copy `.env.example` to `.env` and update environment variables:
-  * `DB_NAME` - Database name
-  * `DB_USER` - Database user
-  * `DB_PASSWORD` - Database password
-  * `DB_HOST` - Database host (defaults to `localhost`)
-  * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s)
-4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
-5. Access WP Admin at `http://example.com/wp/wp-admin`
+3. Run `composer run-script post-root-package-install` to set up environment
+4. Access WP Admin at `http://example.com/wp/wp-admin`
 
 Using Capistrano for deploys?
 
-### Deploying with Capistrano
+### Deploying with Flightplan
 
-Required Gems:
-
-* capistrano (> 3.1.0)
-* capistrano-composer
-
-These can be installed manually with `gem install <gem name>` but it's highly suggested you use [Bundler](http://bundler.io/) to manage them. Bundler is basically the Ruby equivalent to PHP's Composer. Just as Composer manages your PHP packages/dependencies, Bundler manages your Ruby gems/dependencies. Bundler itself is a Gem and can be installed via `gem install bundler` (sudo may be required).
-
-The `Gemfile` in the root of this repo specifies the required Gems (just like `composer.json`). Once you have Bundler installed, run `bundle install` to install the Gems in the `Gemfile`. When using Bundler, you'll need to prefix the `cap` command with `bundle exec` as seen below (this ensures you're not using system Gems which can cause conflicts).
-
-See http://capistranorb.com/documentation/getting-started/authentication-and-authorisation/ for the best way to set up SSH key authentication to your servers for password-less (and secure) deploys.
+This can be installed manually with `npm install flightplan` but it's highly suggested you use [NPM](http://npmjs.org/) to manage them. NPM is basically the JavaScriptNode equivalent to PHP's Composer. Just as Composer manages your PHP packages/dependencies, NPM manages your JavaScript/Node gems/dependencies.
 
 ### Deployment Steps
 
-1. Edit your `config/deploy/` stage/environment configs to set the roles/servers and connection options.
-2. Before your first deploy, run `bundle exec cap <stage> deploy:check` to create the necessary folders/symlinks.
-3. Add your `.env` file to `shared/` in your `deploy_to` path on the remote server for all the stages you use (ex: `/srv/www/example.com/shared/.env`)
-4. Run the normal deploy command: `bundle exec cap <stage> deploy`
-5. Enjoy one-command deploys!
-
-* Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
+1. Edit your `flightplan.js` environment configs to set the roles/servers and connection options.
+2. run `fly deploy:<environment>`
+3. Add your `.env` file to `shared/` in your `shared` path on the remote server for all the stages you use (ex: `/srv/www/example.com/shared/.env`)
+4. Enjoy one-command deploys!
 
 ## Documentation
 
 ### Folder Structure
 
 ```
-├── Capfile
 ├── composer.json
 ├── config
 │   ├── application.php
-│   ├── deploy
-│   │   ├── staging.rb
-│   │   └── production.rb
-│   ├── deploy.rb
 │   ├── environments
 │   │   ├── development.php
 │   │   ├── staging.php
@@ -255,26 +230,23 @@ Just like plugins, WPackagist maintains a Composer mirror of the WP theme direct
 
 Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
 
-### Capistrano
+### Flightplan
 
-[Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
+[Flightplan](http://github.com/pstadler/flightplan) is a node.js library for streamlining application deployment or systems administration tasks. It will let you deploy or sync/push your database and uploads in one command:
 
-* Deploy: `cap production deploy`
-* Rollback: `cap production deploy:rollback`
+* Deploy: `fly deploy:<environment>`
+* Push DB: `fly db_push:<environment>`
+* Pull DB: `fly db_pull:<environemnt>`
+* Push Uploads: `fly uploads_push:<environment>`
+* Pull Uploads: `fly uploads_pull:<environment>`
 
-Composer support is built-in so when you run a deploy, `composer install` is automatically run. Capistrano has a great [deploy flow](http://www.capistranorb.com/documentation/getting-started/flow/) that you can hook into and extend it.
-
-It's written in Ruby so it's needed *locally* if you want to use it. Capistrano was recently rewritten to be completely language agnostic, so if you previously wrote it off for being too Rails-centric, take another look at it.
-
-Screencast ($): [Deploying WordPress with Capistrano](http://roots.io/screencasts/deploying-wordpress-with-capistrano/)
+Composer support is built-in so when you run a deploy, `composer install` is automatically run.
 
 #### Don't want it?
 
 You will lose the one-command deploys and built-in integration with Composer. Another deploy method will be needed as well.
 
-* Remove `Capfile`, `Gemfile`, and `Gemfile.lock`
-* Remove `config/deploy.rb`
-* Remove `config/deploy/` directory
+* Remove `flightplan.js`
 
 ### wp-cron
 
@@ -288,16 +260,6 @@ Bedrock works with [WP-CLI](http://wp-cli.org/) just like any other WordPress pr
 
 The `wp` command will automatically pick up Bedrock's subdirectory install as long as you run commands from within the project's directory (or deeper). Bedrock includes a `wp-cli.yml` file that sets the `path` option to `web/wp`. Use this config file for any further [configuration](http://wp-cli.org/config/).
 
-## Vagrant/Ansible
-
-Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's README, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
-
-Note that using Ansible you no longer need to manually create/edit a `.env` file (or use `composer create-project` to generate one). Ansible will generate a `.env` based on its config and automatically generate salts/keys.
-
-## Todo
-
-* Solution for basic database syncing/copying
-
 ## Contributing
 
 Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this project. There are several ways you can contribute:
@@ -305,7 +267,7 @@ Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this proje
 * Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
 * Suggesting new features
 * Writing or refactoring code
-* Fixing [issues](https://github.com/roots/bedrock/issues)
+* Fixing [issues](https://bitbucket.org/mixedmediacreations/bedrock/issues)
 * Replying to questions on the [forum](http://discourse.roots.io/)
 
 ## Support
