@@ -61,6 +61,9 @@ function roots_wp_title($title) {
 }
 add_filter('wp_title', 'roots_wp_title', 10);
 
+/**
+ *  Custon Post Type - Location
+ */
 add_action('init', 'cptui_register_my_cpt_location');
 function cptui_register_my_cpt_location() {
 	register_post_type('location', array(
@@ -93,6 +96,9 @@ function cptui_register_my_cpt_location() {
 			)
 		) ); }
 
+/**
+ * Custom Post Type - Floorplan
+ */
 add_action('init', 'cptui_register_my_cpt_floorplan');
 	function cptui_register_my_cpt_floorplan() {
 		register_post_type('floorplan', array(
@@ -125,8 +131,11 @@ add_action('init', 'cptui_register_my_cpt_floorplan');
 				)
 			) ); }
 
-if(function_exists("register_field_group"))
-{
+/**
+ * Custom Fields
+ */
+if(function_exists("register_field_group")) {
+  /* Floor Plans */
 	register_field_group(array (
 		'id' => 'acf_floorplans',
 		'title' => 'Floorplans',
@@ -217,6 +226,8 @@ if(function_exists("register_field_group"))
 	),
 'menu_order' => 0,
 ));
+
+/* Locations */
 register_field_group(array (
 	'id' => 'acf_locations',
 	'title' => 'Locations',

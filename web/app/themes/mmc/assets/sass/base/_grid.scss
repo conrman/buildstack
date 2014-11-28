@@ -2,82 +2,107 @@
 /* Grid System
 ================================================================ */
 
+// Jeet implimentation
+
+@for $i from 1 through $columns {
+	.span-#{$i} {
+		@include span($i/$columns);
+	}
+
+	.col-#{$i} {
+		@include col($i/$columns);
+	}
+
+	@each $name in $bp-names {
+		@media (min-width: bp($name)) {
+			.span-#{$name}-#{$i} {
+				@include span($i/$columns);
+			}
+
+			.col-#{$name}-#{$i} {
+				@include col($i/$columns);
+			}
+		}
+	}
+}
+
+// Default One Nexus grid
 /******************************************************************
 Individual Column
 ******************************************************************/
 
-[class*="span"] {
-	display: inline-block;
-	zoom: 1; *display: inline; /* IE < 8: fake inline-block */
-	vertical-align: top;
-	margin-left: $gutter;
-	&:first-child {
-		margin-left: 0;
-	}
-}
+// [class*="span"] {
+// 	display: inline-block;
+// 	zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+// 	vertical-align: top;
+// 	margin-left: $gutter;
+// 	&:first-child {
+// 		margin-left: 0;
+// 	}
+// }
 
-/******************************************************************
-Custom Column Grid
-******************************************************************/
+// /******************************************************************
+// Custom Column Grid
+// ******************************************************************/
 
-@for $i from 1 through $columns {
-	.span-#{$i} {
-		width: ( (100/$columns) * $i) - ( ( ((100 / ((100/$columns) * $i)) - 1) * $gutter ) / ( $columns / $i ) )
-	}
-}
+// @for $i from 1 through $columns {
+// 	.span-#{$i} {
+// 		width: ( (100/$columns) * $i) - ( ( ((100 / ((100/$columns) * $i)) - 1) * $gutter ) / ( $columns / $i ) )
+// 	}
+// }
 
-.row {
+// .row {
 
-/******************************************************************
-Default Column Stacking
-******************************************************************/
+// /******************************************************************
+// Default Column Stacking
+// ******************************************************************/
 
-@media (max-width: $breakpoint-3) {
-	&:not([class*="bp"]) {
-		> [class*="span"] {
-			margin-left: 0;
-			width: 100%;
-		}
-		&.block-columns {
-			> [class*="span"] {
-				display: inline-block;
-			}
-		}
-	}
-}
+// @media (max-width: $breakpoint-3) {
+// 	&:not([class*="bp"]) {
+// 		> [class*="span"] {
+// 			margin-left: 0;
+// 			width: 100%;
+// 		}
+// 		&.block-columns {
+// 			> [class*="span"] {
+// 				display: inline-block;
+// 			}
+// 		}
+// 	}
+// }
 
-/******************************************************************
-Custom Column Stacking
-******************************************************************/
+// /******************************************************************
+// Custom Column Stacking
+// ******************************************************************/
 
-@function bp($name) {
-	@return nth($bp-values, index($bp-names, $name))
-}
+// @function bp($name) {
+// 	@return nth($bp-values, index($bp-names, $name))
+// }
 
-@each $name in $bp-names {
-	@media (max-width: bp($name)) {
-		&.#{$name} {
-			[class*="span"] {
-				margin-left: 0;
-				width: 100%;
-			}
-			&.block-columns {
-				> [class*="span"] {
-					display: inline-block;
-				}
-			}
-		}
-	}
-}
+// @each $name in $bp-names {
+// 	@media (max-width: bp($name)) {
+// 		&.#{$name} {
+// 			[class*="span"] {
+// 				margin-left: 0;
+// 				width: 100%;
+// 			}
+// 			&.block-columns {
+// 				> [class*="span"] {
+// 					display: inline-block;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
-/******************************************************************
-Block Columns
-******************************************************************/
+// /******************************************************************
+// Block Columns
+// ******************************************************************/
 
-&.block-columns {
-	> [class*="span"] {
-		display: table-cell;
-	}
-}
+// &.block-columns {
+// 	> [class*="span"] {
+// 		display: table-cell;
+// 	}
+// }
 
-} // End .row
+// } // End .row

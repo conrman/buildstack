@@ -6,26 +6,25 @@
 Skeleton
 ******************************************************************/
 
-$main-width       :     1200px;
-$max-width        :     90%;
+$main-width:	1200px !default;
+$max-width:	90% !default;
 
-$columns            :     12;
-$gutter                 :     2.5%;
+$columns:	12 !default;
+$gutter: 	2.5% !default;
 
 /******************************************************************
 Breakpoints
 ******************************************************************/
 
-$breakpoint-0     :     0px;
-$breakpoint-1     :     460px;
-$breakpoint-2     :     720px;
-$breakpoint-3     :     940px;
-$breakpoint-4     :     1200px;
-$breakpoint-5     :     1400px;
+$breakpoint-0:	0px !default;
+$breakpoint-1:	460px !default;
+$breakpoint-2:	720px !default;
+$breakpoint-3:	940px !default;
+$breakpoint-4:	1200px !default;
+$breakpoint-5:	1400px !default;
 
-$bp-values        :     $breakpoint-0, $breakpoint-1, $breakpoint-2, $breakpoint-3, $breakpoint-4, $breakpoint-5;
-
-$bp-names         :     bp0, bp1, bp2, bp3, bp4, bp5;
+$bp-values:	$breakpoint-0, $breakpoint-1, $breakpoint-2, $breakpoint-3, $breakpoint-4, $breakpoint-5 !default;
+$bp-names:	bp0, bp1, bp2, bp3, bp4, bp5 !default;
 
 /******************************************************************
 Typography
@@ -33,20 +32,20 @@ Typography
 
 /* Fonts */
 
-$font-1           :     'Pacifico', cursive;
-$font-2           :     'Raleway', sans-serif;
-$font-3           :     'Roboto', sans-serif;
+$font-1: 'Pacifico', cursive !default;
+$font-2: 'Raleway', sans-serif !default;
+$font-3: 'Roboto', sans-serif !default;
 
-$sans-serif       :     "Helvetica Neue", Helvetica, Arial, sans-serif;
-$serif            :     "Georgia", Cambria, Times New Roman, Times, serif;
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serif: "Georgia", Cambria, Times New Roman, Times, serif !default;
 
 /* Font Sizes */
 
-$base-font-size   :     1.1rem;
-$large-font-size   :     1.3rem;
-$small-font-size  :     $base-font-size * 0.70;
+$base-font-size:		1.1rem !default;
+$large-font-size:	1.3rem !default;
+$small-font-size:	$base-font-size * 0.70 !default;
 
-$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts" !default; // for referencing Bootstrap CDN font files directly
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts" !default !default; // for referencing Bootstrap CDN font files directly
 
 
 /******************************************************************
@@ -55,156 +54,155 @@ Color Palette
 
 /* Greyscale Colors */
 
-$white            :     #ffffff;
-$dark-white       :     #f1f1f1;
-$light-grey       :     #b1b1b1;
-$grey             :     #707070;
-$dark-grey        :     #111111;
-$black            :     #000000;
+$white: 	#ffffff !default;
+$dark-white:	#f1f1f1 !default;
+$light-grey:	#b1b1b1 !default;
+$grey:		#707070 !default;
+$dark-grey:	#111111 !default;
+$black:		#000000 !default;
 
-$greyscale-colors :     $white, $light-grey, $grey, $dark-grey, $black;
-$greyscale-names  :     white, light-grey, grey, dark-grey, black;
+$greyscale-colors :     $white, $light-grey, $grey, $dark-grey, $black !default;
+$greyscale-names  :     white, light-grey, grey, dark-grey, black !default;
 
 /* Branding Colors */
 
-$brand-1          :     #138e90; // Green
-$brand-2          :     #f97b01; // Orange
-$brand-3          :     #ffc600; // Yellow
-$brand-4          :     #8a8c8f; // Gray
-$brand-5          :     #6b3500; // Brown
+$brand-1: 	#138e90 !default; // Green
+$brand-2: 	#f97b01 !default; // Orange
+$brand-3: 	#ffc600 !default; // Yellow
+$brand-4: 	#8a8c8f !default; // Gray
+$brand-5: 	#6b3500 !default; // Brown
 
-$brand-colors     :     $brand-1, $brand-2, $brand-3, $brand-4, $brand-5;
-$brand-names    :     brand-1, brand-2, brand-3, brand-4, brand-5;
+$brand-colors:     $brand-1, $brand-2, $brand-3, $brand-4, $brand-5 !default;
+$brand-names:     brand-1, brand-2, brand-3, brand-4, brand-5 !default;
 
 /* Alert Box Colors */
 
-$alert-yellow     :     #e7d16c;
-$alert-red        :     #CB8888;
-$alert-green      :     #9cc079;
-$alert-blue       :     #79a9c0;
+$alert-yellow:	#e7d16c !default;
+$alert-red:	#CB8888 !default;
+$alert-green:	#9cc079 !default;
+$alert-blue:	#79a9c0 !default;
 
 /* Emotional Colors */
 
-$help             :     #e7d16c;
-$danger           :     #CB8888;
-$success          :     #9cc079;
-$info             :     #79a9c0;
+$help:		#e7d16c !default;
+$danger:	#CB8888 !default;
+$success:	#9cc079 !default;
+$info:		#79a9c0 !default;
 
-$emotional-colors :     $help, $danger, $success, $info;
-$emotional-names  :     help, danger, success, info;
+$emotional-colors:	$help, $danger, $success, $info !default;
+$emotional-names:	help, danger, success, info !default;
 
 /* Social Media Colors */
 
-$facebook	: 	#3b5998;
-$twitter		: 	#55acee;
-$linkedin 	: 	#0976b4;
-$instagram 	: 	$dark-grey;
-$pinterest 	: 	$dark-grey;
+$facebook: 	#3b5998 !default;
+$twitter: 	#55acee !default;
+$linkedin: 	#0976b4 !default;
+$instagram: 	$dark-grey !default;
+$pinterest: 	$dark-grey !default;
 
-$social-colors : 	$facebook, $twitter, $linkedin, $instagram, $pinterest;
-$social-names: 	facebook, twitter, linkedin, instagram, pinterest;
+$social-colors : 	$facebook, $twitter, $linkedin, $instagram, $pinterest !default;
+$social-names: 	facebook, twitter, linkedin, instagram, pinterest !default;
 
 
 /******************************************************************
 Base Theme
 ******************************************************************/
 
-
 /* base */
-$base-margin:       			1.5rem;
-$base-padding:      			1em;
-$base-background:   			$brand-3;
-$base-text-color:           		$dark-grey;
-$base-link-color:			$brand-4;
-$base-selection-text-color:             	$white;
-$base-selection-background-color:	$brand-3;
+$base-margin:       			1.5rem !default;
+$base-padding:      			1em !default;
+$base-background:   			$brand-3 !default;
+$base-text-color:           		$dark-grey !default;
+$base-link-color:			$brand-3 !default;
+$base-selection-text-color:             	$white !default;
+$base-selection-background-color:	$brand-3 !default;
 
 /* body */
-$body-background: 	url('../images/background_paper_cream.jpg');
-$body-font-family: 	$font-2;
-$body-font-size: 	$base-font-size;
-$body-line-height: 	1.4;
-$body-text-color: 	$dark-grey;
+$body-background: 	url('../images/background_paper_cream.jpg') !default;
+$body-font-family: 	$font-2 !default;
+$body-font-size: 	$base-font-size !default;
+$body-line-height: 	1.4 !default;
+$body-text-color: 	$dark-grey !default;
 
 /* wrapper */
-$wrapper-background: 	transparent;
-$wrapper-padding: 		1em 0 0;
+$wrapper-background: 	transparent !default;
+$wrapper-padding: 		1em 0 0 !default;
 
 /* app-header */
-$app-header-background: 	transparent;
-$app-header-height: 		auto;
-$app-header-width: 		auto;
+$app-header-background: 	transparent !default;
+$app-header-height: 		auto !default;
+$app-header-width: 		auto !default;
 
 /* logo */
-$logo-name-color: 		$black;
-$logo-name-font-family: 	$font-2;
-$logo-name-letter-spacing:	1px;
-$logo-name-margin: 		auto;
-$logo-name-padding: 		1em;
-$logo-name-text-transform: 	normal;
+$logo-name-color: 		$black !default;
+$logo-name-font-family: 	$font-2 !default;
+$logo-name-letter-spacing:	1px !default;
+$logo-name-margin: 		auto !default;
+$logo-name-padding: 		1em !default;
+$logo-name-text-transform: 	normal !default;
 
-$logo-image-border: none;
-$logo-image-height: auto;
-$logo-image-width: auto;
+$logo-image-border: none !default;
+$logo-image-height: auto !default;
+$logo-image-width: auto !default;
 
 /* main-nav*/
-$main-nav-background: 		transparent;
-$main-nav-font-family: 		$font-3;
-$main-nav-font-size: 			1rem;
-$main-nav-letter-spacing: 		0.05em;
-$main-nav-text-decoration: 		none;
-$main-nav-text-transform: 		uppercase;
+$main-nav-background: 		transparent !default;
+$main-nav-font-family: 			$font-3 !default;
+$main-nav-font-size: 			1rem !default;
+$main-nav-letter-spacing: 		0.05em !default;
+$main-nav-text-decoration: 		none !default;
+$main-nav-text-transform: 		uppercase !default;
 
-$main-nav-link-background: 		transparent;
-$main-nav-link-hover-background: 	transparent;
-$main-nav-link-hover-color: 		darken($brand-4, 15%);
-$main-nav-line-height: 		3.2em;
-$main-nav-padding: 			0 1.5em;
+$main-nav-link-background: 		transparent !default;
+$main-nav-link-hover-background: 	transparent !default;
+$main-nav-link-hover-color: 		darken($brand-4, 15%) !default;
+$main-nav-line-height: 			3.2em !default;
+$main-nav-padding: 			0 1.5em !default;
 
 // nav-trigger
-$nav-trigger-background: 		$brand-1;
-$nav-trigger-color: 			$white;
-$nav-trigger-hover-background: 	$brand-2;
-$nav-trigger-font-family: 		$font-1;
-$nav-trigger-font-size: 		1.6rem;
-$nav-trigger-height:  			1.25em;
-$nav-trigger-width: 			auto;
-$nav-trigger-padding: 			0 1em;
+$nav-trigger-background: 		$brand-1 !default;
+$nav-trigger-color: 			$white !default;
+$nav-trigger-hover-background: 	$brand-2 !default;
+$nav-trigger-font-family: 		$font-1 !default;
+$nav-trigger-font-size: 			1.6rem !default;
+$nav-trigger-height:  			1.25em !default;
+$nav-trigger-width: 			auto !default;
+$nav-trigger-padding: 			0 1em !default;
 
 /* off canvas nav */
-$off-canvas-background-color: 	$brand-1;
-$off-canvas-background-hover: 	$brand-3;
-$off-canvas-background-tint: 		#000;
-$off-canvas-border-color: 		$brand-3;
+$off-canvas-background-color: 		$brand-1 !default;
+$off-canvas-background-hover: 	$brand-3 !default;
+$off-canvas-background-tint: 		#000 !default;
+$off-canvas-border-color: 		$brand-3 !default;
 
 /* heading */
-$heading-line-height:			1;
-$heading-font-family: 			$font-1;
-$heading-highlight-background: 	$brand-3;
-$heading-style-color: 			$brand-1;
-$heading-text-transform: 		normal;
+$heading-line-height:			1 !default;
+$heading-font-family: 			$font-1 !default;
+$heading-highlight-background: 	$brand-3 !default;
+$heading-style-color: 			$brand-1 !default;
+$heading-text-transform: 		normal !default;
 
 /* button */
-$button-background: 		$brand-1;
-$button-border-color: 		$brand-1;
-$button-color: 			$white;
-$button-font-family: 		$font-3;
-$button-font-size: 		1rem;
-$button-letter-spacing: 	1;
-$button-line-height: 		1.5;
-$button-padding: 		1.2em;
-$button-text-decoration: 	none;
-$button-text-transform: 	uppercase;
+$button-background: 		$brand-1 !default;
+$button-border-color: 		$brand-1 !default;
+$button-color: 			$white !default;
+$button-font-family: 		$font-3 !default;
+$button-font-size: 		1rem !default;
+$button-letter-spacing: 	1 !default;
+$button-line-height: 		1.5 !default;
+$button-padding: 		1.2em !default;
+$button-text-decoration: 	none !default;
+$button-text-transform: 	uppercase !default;
 
 /* input.box */
-$input-box-background: 	$white;
-$input-box-border: 		none;
-$input-box-color: 		$brand-1;
-$input-box-font-family: 	$font-1;
-$input-box-placeholder-color: 	$brand-1;
+$input-box-background: 	$white !default;
+$input-box-border: 		none !default;
+$input-box-color: 		$brand-1 !default;
+$input-box-font-family: 		$font-1 !default;
+$input-box-placeholder-color: 	$brand-1 !default;
 
 /* footer */
-$footer-background: 	transparent;
-$footer-text-color: 	$light-grey;
-$footer-margin: 	0;
-$footer-padding: 	$base-padding;
+$footer-background: 	transparent !default;
+$footer-text-color: 	$light-grey !default;
+$footer-margin: 	0 !default;
+$footer-padding: 	$base-padding !default;

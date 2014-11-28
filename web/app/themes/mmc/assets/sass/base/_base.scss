@@ -14,11 +14,7 @@ html, body {
 	margin: 0;
 }
 
-html {
-	overflow-x: hidden;
-}
-
-#site-content {
+html, #site-content {
 	overflow-x: hidden;
 }
 
@@ -42,16 +38,22 @@ p {
 }
 
 address {
-	color: $brand-4;
-	font-family: $font-3;
-	font-size: $small-font-size;
+	color: $address-color;
+	font-family: $address-font-family;
+	font-size: $address-font-size;
 	font-style: normal;
+
+	> a, >a span {
+		color: $address-color;
+		letter-spacing: 0.05em;
+	}	
 }
 
 .container {
 	width: $main-width;
 	max-width: $max-width;
 	margin: 0 auto;
+  @include center();
 }
 
 .row {
@@ -66,11 +68,41 @@ address {
 	word-spacing: -0.43em;
 }
 
-.wrapper {
-	background: $wrapper-background;
-	padding: $wrapper-padding;
+body:not(.home) .wrapper {
+	@include center($wrapper-container);
 }
 
+.wrapper {
+	background: $wrapper-background;
+	background-size: cover;
+	background-attachment: fixed;
+	padding: $wrapper-padding;
+	@include center(100%);
+
+	#sidebar {
+		@include col(1);
+		@include unshift();
+		@media (min-width: $breakpoint-3) {
+			@include col($sidebar-width);
+			@include shift($main-content-width);
+		}
+
+		+ #main {
+			@include col(1);
+			@include unshift();
+			@media (min-width: $breakpoint-3) {
+				@include col($main-content-width);
+				@include shift(-$sidebar-width);
+			}
+
+		}
+	}
+}
+
+#main .content {
+	margin: $main-content-margin;
+	padding: $main-content-padding;
+}
 
 h1, h2, h3, h4, h5, h6, hgroup, p, ul, ol, dd, figure, pre, table, fieldset, legend, hr {
 	margin: $base-margin 0;
