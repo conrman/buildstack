@@ -47,31 +47,30 @@ class Installer {
 		$env_file = "{$root}/.env";
 
 		if (copy("{$root}/.env.example", $env_file)) {
+
+			// Setup .env file
 			file_put_contents($env_file, implode($salts, "\n"), FILE_APPEND | LOCK_EX);
 			$file = file_get_contents($env_file);
-
 			$file = str_replace(
 				array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
 				array($db_name, $db_user, $db_pass, $env, $url),
 				$file
 			);
-
 			file_put_contents($env_file, $file);
 
+			// Setup vhost
 			$vhost = file_get_contents($root . '/.vhost.example');
-
 			$vhost = str_replace(
 				array('{{site_url}}', '{{project_name}}', '{{user}}'),
 				array($url, $project_name, $system_user),
 				$vhost
 			);
-
 			file_put_contents($root . '/.vhost', $vhost);
-
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
+			shell_exec('echo "127.0.0.1         ' . $url . '" >> /etc/hosts');
 
+			// Run NPM
 			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
-
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
