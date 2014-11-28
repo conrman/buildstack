@@ -67,7 +67,7 @@ class Installer {
 			);
 			file_put_contents($root . '/.vhost', $vhost);
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
-			shell_exec('echo "127.0.0.1         ' . $url . '" >> /etc/hosts');
+			shell_exec('sudo echo "127.0.0.1         ' . $url . '" >> /etc/hosts');
 
 			// Run NPM
 			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
