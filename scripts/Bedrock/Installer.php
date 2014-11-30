@@ -7,15 +7,15 @@ use Composer\Script\Event;
 
 class Installer {
 	public static $KEYS = array(
-		'AUTH_KEY',
-		'SECURE_AUTH_KEY',
-		'LOGGED_IN_KEY',
-		'NONCE_KEY',
-		'AUTH_SALT',
-		'SECURE_AUTH_SALT',
-		'LOGGED_IN_SALT',
-		'NONCE_SALT'
-	);
+	                            'AUTH_KEY',
+	                            'SECURE_AUTH_KEY',
+	                            'LOGGED_IN_KEY',
+	                            'NONCE_KEY',
+	                            'AUTH_SALT',
+	                            'SECURE_AUTH_SALT',
+	                            'LOGGED_IN_SALT',
+	                            'NONCE_SALT'
+	                            );
 
 	public static function setupEnvironment(Event $event) {
 		$root = dirname(dirname(__DIR__));
@@ -36,9 +36,9 @@ class Installer {
 			$system_user = trim(shell_exec('whoami'));
 		}
 
-		if (!$generate_salts) {
-			// return 1;
-		}
+		// if (!$generate_salts) {
+		// return 1;
+		// }
 
 		$salts = array_map(function ($key) {
 			return sprintf("%s='%s'", $key, Installer::generate_salt());
@@ -52,22 +52,27 @@ class Installer {
 			file_put_contents($env_file, implode($salts, "\n"), FILE_APPEND | LOCK_EX);
 			$file = file_get_contents($env_file);
 			$file = str_replace(
-				array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
-				array($db_name, $db_user, $db_pass, $env, $url),
-				$file
-			);
+			                    array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
+			                    array($db_name, $db_user, $db_pass, $env, $url),
+			                    $file
+			                    );
 			file_put_contents($env_file, $file);
 
 			// Setup vhost
 			$vhost = file_get_contents($root . '/.vhost.example');
 			$vhost = str_replace(
-				array('{{site_url}}', '{{project_name}}', '{{user}}'),
-				array($url, $project_name, $system_user),
-				$vhost
-			);
+			                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
+			                     array($url, $project_name, $system_user),
+			                     $vhost
+			                     );
 			file_put_contents($root . '/.vhost', $vhost);
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
-			shell_exec('sudo echo "127.0.0.1         ' . $url . '" >> /etc/hosts');
+
+			// Setup host
+			$host = file_get_contents($root . '/host.txt');
+			$host = str_replace('{{url}}', $url, $host);
+			file_put_contents($root . '/.host', $host);
+			shell_exec('cat .host | sudo tee -a /etc/hosts');
 
 			// Run NPM
 			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
@@ -77,7 +82,7 @@ class Installer {
 		}
 	}
 
-	/**
+	/*
 	 * Slightly modified/simpler version of wp_generate_password
 	 * https://github.com/WordPress/WordPress/blob/cd8cedc40d768e9e1d5a5f5a08f1bd677c804cb9/wp-includes/pluggable.php#L1575
 	 */
