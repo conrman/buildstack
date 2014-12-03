@@ -32,14 +32,10 @@ class Installer {
 			$db_user = $io->ask('<info>What is the DB User?</info> ', 'root');
 			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
 			$env = $io->ask('<info>What is the environment?</info> [<comment>development</comment>] ', 'development');
-			$url = $io->ask('<info>What is the Site URL?</info> [<comment>project-name.dev</comment>] ', 'project-name.dev');
+			$url = $io->ask("<info>What is the Site URL?</info> [<comment>$project_name.dev</comment>] ", "$project_name.dev");
 			$vhost_path = $io->ask('<info>What is the path of your Apache Vhost file?</info> [<comment>/etc/apache2/extra/httpd-vhosts.conf</comment>] ', '/etc/apache2/extra/httpd-vhosts.conf');
 			$system_user = trim(shell_exec('whoami'));
 		}
-
-		// if (!$generate_salts) {
-		// return 1;
-		// }
 
 		$salts = array_map(function ($key) {
 			return sprintf("%s='%s'", $key, Installer::generate_salt());
@@ -75,18 +71,20 @@ class Installer {
 			file_put_contents($root . '/.host', $host);
 			shell_exec('cat .host | sudo tee -a /etc/hosts');
 
-			// Setup Gulp
-			$gulp = file_get_contents($root . '/gulpfile.js');
-			$gulp = str_replace('{{url}}', $url, $gulp);
-			file_put_contents($root . '/gulpfile.js', $gulp);
-
-			// Setup Flightplan
-			$flightplan = file_get_contents($root . '/flightplan.js');
-			$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
-			file_put_contents($root . '/flightplan.js', $flightplan);
-
 			// Run NPM
-			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
+			$npm = shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
+
+			if ($npm) {
+				// Setup Gulp
+				$gulp = file_get_contents($root . '/web/app/themes/mmc/gulpfile.js');
+				$gulp = str_replace('{{url}}', $url, $gulp);
+				file_put_contents($root . '/web/app/themes/mmc/gulpfile.js', $gulp);
+
+				// Setup Flightplan
+				$flightplan = file_get_contents($root . '/flightplan.js');
+				$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
+				file_put_contents($root . '/flightplan.js', $flightplan);
+			}
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
