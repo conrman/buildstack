@@ -1,3 +1,4 @@
+<!-- Portal Links -->
 <?php global $display_options; ?>
 
 <?php if (!empty($display_options['lease_online'])) : ?>

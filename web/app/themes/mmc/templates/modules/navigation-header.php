@@ -1,3 +1,4 @@
+<!-- Header Navigation -->
 <div class="main-nav">
 	<div class="info-wrapper">
 		<?php get_template_part('templates/modules/info-address'); ?>

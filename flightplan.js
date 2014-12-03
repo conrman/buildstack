@@ -4,19 +4,14 @@ var tmpDir = new Date().getTime();
 var plan = new Flightplan();
 var keep_releases = 5;
 
-// INITIAL STEPS
-// $ ssh-agent -a /tmp/foo
-// $ export SSH_AUTH_SOCK=/tmp/foo
-// $ ssh-add /path/to/private/key (~/.ssh/id_rsa)
-
 // configuration
 plan.briefing({
 	debug: false,
 	destinations: {
 		'staging': {
 			host: 'mmcstaging.com',
-			username: '',
-			releases: 'deployments/',
+			username: '{{project_acronym}}',
+			releases: 'deployments/{{project_acronym}}',
 			privateKey: process.env.HOME + '/.ssh/id_rsa'
 		},
 		'production': {

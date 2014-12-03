@@ -1,3 +1,4 @@
+<!-- Address -->
 <?php global $display_options;?>
 
 <?php if (!empty($display_options)) : ?>

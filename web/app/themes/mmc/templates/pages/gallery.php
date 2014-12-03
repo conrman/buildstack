@@ -1,25 +1,18 @@
-<?php get_template_part('templates/modules/jumbotron'); ?>
+<!-- Gallery -->
 
-<?php $gallery_thumbnails = get_field('gallery_thumbnails'); ?>
 <?php $gallery_images = get_field('gallery_images'); ?>
+<?php $gallery_thumbnails = get_field('gallery_thumbnails'); ?>
 
-<section class="grid-gallery">
+<section class="gallery-wrapper">
 	<div class="container">
-		<div class="row text-center">
-			<?php 
-			$i = 0;
+		<div id="gallery-collage">
+			<?php $i = 0;
 			foreach ($gallery_thumbnails as $image) : ?>
-			<a class="grid-item fancybox" href="<?php echo $gallery_images[$i]['url']; ?>">
+			<a class="gallery-item fancybox" href="<?php echo $gallery_images[$i]['url']; ?>" rel="gallery">
 				<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
 			</a>
 			<?php $i++;
-			endforeach;
-			?>
+			endforeach; ?>
 		</div>
 	</div>
 </section>
-
-<div class="bar">
-	<!-- <img src="<?php bloginfo('template_directory'); ?>/assets/images/gfx_gallery_blue_grungy_bar.png" alt=""> -->
-	<h2>life is an adventure...live life here.</h2>
-</div>

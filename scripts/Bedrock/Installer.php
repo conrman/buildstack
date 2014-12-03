@@ -27,6 +27,7 @@ class Installer {
 		} else {
 			$generate_salts = $io->askConfirmation('<info>Generate salts and append to .env file?</info> [<comment>Y,n</comment>]? ', true);
 			$project_name = $io->ask('<info>What is the name of the project? (Include hyphens) ');
+			$project_acronym = $io->ask('<info>What is the acronym of the project? (use caps) ');
 			$db_name = $io->ask('<info>What is the DB Name?</info> ', 'project-name');
 			$db_user = $io->ask('<info>What is the DB User?</info> ', 'root');
 			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
@@ -73,6 +74,16 @@ class Installer {
 			$host = str_replace('{{url}}', $url, $host);
 			file_put_contents($root . '/.host', $host);
 			shell_exec('cat .host | sudo tee -a /etc/hosts');
+
+			// Setup Gulp
+			$gulp = file_get_contents($root . '/gulpfile.js');
+			$gulp = str_replace('{{url}}', $url, $gulp);
+			file_put_contents($root . '/gulpfile.js', $gulp);
+
+			// Setup Flightplan
+			$flightplan = file_get_contents($root . '/flightplan.js');
+			$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
+			file_put_contents($root . '/flightplan.js', $flightplan);
 
 			// Run NPM
 			shell_exec('npm install && cd web/app/themes/mmc/ && npm install');

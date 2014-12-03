@@ -1,5 +1,3 @@
-<?php get_template_part('templates/modules/jumbotron'); ?>
-
 <?php
 global $display_options;
 $locations = get_posts(array('post_type' => 'location', 'posts_per_page' => '100'));
@@ -12,7 +10,6 @@ foreach ($locations as $post) { setup_postdata($post);
 	}
 }
 ?>
-
 
 <div id="map">
 	<div class="map-nav-wrapper">
@@ -43,18 +40,12 @@ foreach ($locations as $post) { setup_postdata($post);
 	jQuery(document).ready(function($) {
 		loadMap();
 
-		<?php
-		$i = 1;
-		foreach($locations as $location) :  setup_postdata($location); 
-			$fields = get_fields($location->ID);
-			?>
+		<?php $i = 1;
+		foreach($locations as $location) :  setup_postdata($location); $fields = get_fields($location->ID); ?>
 			window.marker<?php echo $i; ?> = drawPoint({"lat": "<?php echo $fields["latitude"]; ?>", "lng": "<?php echo $fields["longitude"]; ?>", "name": "<?php echo $location->post_title; ?>", "website": "<?php echo $fields['website']; ?>", "category": "<?php echo $fields['category']; ?>", "address": "<?php echo $fields['address']; ?>"});
 			$('.hotspots.<?php echo $fields['category']; ?>').append("<div class='hotspot'><a href='javascript:showPOIDetail(window.marker<?php echo $i; ?>)' class='title'><?php echo $location->post_title; ?></a><a class='website' href='<?php echo $fields['website']; ?>'>website</a><a class='directions' href='http://google.com/maps/place/<?php echo $fields['address']; ?>' target='_blank'>directions</a></div>");
-			// $('.hotspots.<?php echo $fields['category']; ?>').append("<div class='hotspot' onclick='showPOIDetail(window.marker<?php echo $i; ?>);' data-number='<?php echo $i; ?>'><div class='title'><?php echo $location->post_title; ?></div></div>");
-		<?php
-			$i++;
-		endforeach;
-		?>
+		<?php $i++;
+		endforeach; ?>
 
 		$('nav.categories div').click(function() {
 			$('nav.categories .map-nav-link').removeClass('active');

@@ -1,3 +1,4 @@
+<!-- Social  Links -->
 <?php global $display_options; ?>
 
 <div class="info-social">

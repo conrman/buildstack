@@ -27,7 +27,7 @@ gulp.task('set-development', function() {
 
 gulp.task('browser-sync', function() {
     browserSync({
-        proxy: "avana-knox-henderson.dev"
+        proxy: "{{url}}"
     });
 });
 

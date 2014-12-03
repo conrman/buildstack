@@ -1,6 +1,5 @@
-<?php
-$jumbotron_image = get_field('jumbotron_image');
-?>
+<!-- Jumbotron -->
+<?php $jumbotron_image = get_field('jumbotron_image'); ?>
 
 <div class="jumbotron">
 	<img src="<?php echo $jumbotron_image['url']; ?>" alt="<?php echo $jumbotron_image['alt']; ?>">
