@@ -3,7 +3,7 @@
 <?php $gallery_images = get_field('gallery_images'); ?>
 <?php $gallery_thumbnails = get_field('gallery_thumbnails'); ?>
 
-<section class="gallery-wrapper">
+<section class="page-wrapper">
 	<div class="container">
 		<div id="gallery-collage">
 			<?php $i = 0;

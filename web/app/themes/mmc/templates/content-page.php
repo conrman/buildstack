@@ -1,5 +1,5 @@
-<?php get_template_part('templates/modules/jumbotron'); ?>
+<!-- Default Page Content -->
 
-<section class="container">
+<div class="content">
 	<?php the_content(); ?>
-</section>
+</div>

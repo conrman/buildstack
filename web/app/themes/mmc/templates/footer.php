@@ -1,3 +1,4 @@
+<!-- Footer -->
 <?php global $display_options; ?>
 <?php global $social_options; ?>
 <footer id="app-footer" class="app-footer">

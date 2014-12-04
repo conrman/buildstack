@@ -1,3 +1,4 @@
+<!-- Location -->
 <?php
 global $display_options;
 $locations = get_posts(array('post_type' => 'location', 'posts_per_page' => '100'));

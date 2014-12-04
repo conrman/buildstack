@@ -22,29 +22,12 @@
 	</div>
 </nav>
 
-<?php 
-$args = array('post_type' => 'floorplan', 'numberposts' => 10, 'order' => 'asc');
-$floorplans = get_posts($args);
+<?php $floorplans = get_posts(array('post_type' => 'floorplan', 'numberposts' => 10, 'order' => 'asc')); ?>
 
-// Temporary Function 
-function bedsToString($bedNum) {
-	if ($bedNum === '1') {
-		return 'one';
-	} elseif ($bedNum === '2') {
-		return 'two';
-	} elseif ($bedNum === '3') {
-		return 'three';
-	} else {
-		return 'townhome';
-	}
-};
-?>
-
-<section class="floorplans-wrapper">
+<section class="page-wrapper">
 	<div class="container">
 		<?php $i = 1;
 		foreach ($floorplans as $post) : setup_postdata($post); ?>
-		<?php  if (!($i % 4) || $i ===1 ) echo '<div class="row">'; ?>
 		<?php echo "<!-- ".get_the_title()." Floorplan -->"; ?>
 		<div class="floorplan-excerpt active" 
 			data-beds="<?php echo bedsToString(get_field('bedrooms')); ?>"
@@ -57,7 +40,6 @@ function bedsToString($bedNum) {
 			<?php get_template_part('templates/modules/floorplan', 'image'); ?>
 			<?php get_template_part('templates/modules/floorplan', 'info'); ?>
 		</div>
-		<?php  if (!($i % 4) || $i ===3 ) echo '</div>'; ?>
 		<?php $i++;
 		endforeach; ?>
 	</div>

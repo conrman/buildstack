@@ -45,7 +45,7 @@ $base-font-size:		1.1rem !default;
 $large-font-size:	1.3rem !default;
 $small-font-size:	$base-font-size * 0.70 !default;
 
-$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts" !default !default; // for referencing Bootstrap CDN font files directly
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts" !default; // for referencing Bootstrap CDN font files directly
 
 
 /******************************************************************
@@ -118,7 +118,7 @@ $base-selection-text-color:             	$white !default;
 $base-selection-background-color:	$brand-3 !default;
 
 /* body */
-$body-background: 	url('../images/background_paper_cream.jpg') !default;
+$body-background: 	$white !default;
 $body-font-family: 	$font-2 !default;
 $body-font-size: 	$base-font-size !default;
 $body-line-height: 	1.4 !default;
@@ -126,6 +126,7 @@ $body-text-color: 	$dark-grey !default;
 
 /* wrapper */
 $wrapper-background: 	transparent !default;
+$wrapper-container: 		1200 !default;
 $wrapper-padding: 		1em 0 0 !default;
 
 /* app-header */
@@ -159,7 +160,17 @@ $main-nav-link-hover-color: 		darken($brand-4, 15%) !default;
 $main-nav-line-height: 			3.2em !default;
 $main-nav-padding: 			0 1.5em !default;
 
-// nav-trigger
+/* address */
+$address-color: 				$grey !default;
+$address-font-family: 			$font-3 !default;
+$address-font-size: 			$large-font-size !default;
+
+/* phone-number */
+$phone-number-color: 			$brand-2 !default;
+$phone-number-font: 			$font-3 !default;
+$phone-number-font-size:		$large-font-size !default;
+
+/* nav-trigger */
 $nav-trigger-background: 		$brand-1 !default;
 $nav-trigger-color: 			$white !default;
 $nav-trigger-hover-background: 	$brand-2 !default;
@@ -174,6 +185,31 @@ $off-canvas-background-color: 		$brand-1 !default;
 $off-canvas-background-hover: 	$brand-3 !default;
 $off-canvas-background-tint: 		#000 !default;
 $off-canvas-border-color: 		$brand-3 !default;
+
+/* main-content */
+$main-content-width: 		8/12;
+$main-content-margin: 		0 0 1.5em;
+$main-content-padding: 		2em 1em;
+
+/* sidebar */
+$sidebar-width: 		4/12;
+
+/* jumbotron */
+$jumbotron-background: 		transparent;
+$jumbotron-border: 			none;
+$jumbotron-color: 			$white;
+$jumbotron-heading-color: 	$white;
+$jumbotron-padding: 		2em;
+$jumbotron-text-align: 		center;
+
+/* pointer-box */
+$pointer-box-background: 	$dark-white;
+$pointer-box-width:			200px;
+$pointer-box-btn-close: 	$white;
+
+/* scroll-top */
+$scroll-top-color:			$brand-1;
+$scroll-top-hover-color:	$brand-2;
 
 /* heading */
 $heading-line-height:			1 !default;
@@ -194,15 +230,31 @@ $button-padding: 		1.2em !default;
 $button-text-decoration: 	none !default;
 $button-text-transform: 	uppercase !default;
 
+
 /* input.box */
-$input-box-background: 	$white !default;
-$input-box-border: 		none !default;
-$input-box-color: 		$brand-1 !default;
-$input-box-font-family: 		$font-1 !default;
-$input-box-placeholder-color: 	$brand-1 !default;
+$input-box-background: 		$white !default;
+$input-box-border: 			3px solid transparent !default;
+$input-box-color: 			$light-grey !default;
+$input-box-font-family: 	$font-2 !default;
+$input-box-padding: 		0.5em !default;
+$input-box-margin: 			0 !default;
+$input-box-hover-border: 	3px solid transparent !default;
+
+$input-box-placeholder-background: 		transparent !default;
+$input-box-placeholder-color: 			$white !default;
+$input-box-placeholder-font-family: 	$font-2 !default;
+$input-box-placeholder-text-align: 		left !default;
+$input-box-placeholder-text-transform: 	capitalize !default;
+$input-box-placeholder-letter-spacing: 	0.1em !default;
 
 /* footer */
-$footer-background: 	transparent !default;
-$footer-text-color: 	$light-grey !default;
-$footer-margin: 	0 !default;
-$footer-padding: 	$base-padding !default;
+$footer-background: 	$black !default;
+$footer-border: 		0 !default;
+$footer-text-color: 	$grey !default;
+$footer-margin: 		0 !default;
+$footer-padding: 		$base-padding !default;
+
+$footer-nav-color: 		$white !default;
+$footer-nav-font-size: 	$small-font-size !default;
+$footer-nav-margin: 	0 !default;
+$footer-nav-padding: 	$base-padding !default;
