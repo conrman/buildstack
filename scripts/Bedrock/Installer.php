@@ -28,8 +28,8 @@ class Installer {
 			$generate_salts = $io->askConfirmation('<info>Generate salts and append to .env file?</info> [<comment>Y,n</comment>]? ', true);
 			$project_name = $io->ask('<info>What is the name of the project? (Include hyphens) ');
 			$project_acronym = $io->ask('<info>What is the acronym of the project? ');
-			$db_name = $io->ask('<info>What is the DB Name?</info> ', $project_name);
-			$db_user = $io->ask('<info>What is the DB User?</info> ', 'root');
+			$db_name = $io->ask('<info>What is the DB Name?</info>[<comment>$project_name</comment>] ', $project_name);
+			$db_user = $io->ask('<info>What is the DB User?</info>[<comment>root</comment] ', 'root');
 			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
 			$env = $io->ask('<info>What is the environment?</info> [<comment>development</comment>] ', 'development');
 			$url = $project_name . ".dev";
@@ -71,14 +71,11 @@ class Installer {
 			file_put_contents($root . '/.host', $host);
 			shell_exec('cat .host | sudo tee -a /etc/hosts');
 
-			// Run NPM
-			$npm = shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
-
 			// Create database
 			shell_exec('wp db create');
 
-			// Restart Apache
-			shell_exec('sudo apachectl restart');
+			// Run NPM
+			$npm = shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
 
 			if ($npm) {
 				// Setup Gulp
@@ -91,6 +88,10 @@ class Installer {
 				$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
 				file_put_contents($root . '/flightplan.js', $flightplan);
 			}
+
+			// Restart Apache
+			shell_exec('sudo apachectl restart');
+			
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
