@@ -28,7 +28,7 @@ run `composer -g config repositories.mmc/bedrock vcs git@bitbucket.org:mixedmedi
 
 You can then run `composer create-project mmc/bedrock <path>` to create a project (see [Installation/Usage](#installationusage) for more details).
 
-:rage: **NOTE**: You may get a, "Permission denied (publickey)." error trying to run the above line. This is due to the fact that you do not have a SSH key setup on bitbucket, as Git != Github. Log into Bitbucket, click "manage account" in top right, click "SSH Key" to add your key. If you arent sure how to do that Github has a good tutorial [HERE](https://help.github.com/articles/generating-ssh-keys/) (Just skip step 3). 
+:rage: **NOTE**: You may get a, "Permission denied (publickey)." error trying to run the above line. This is due to the fact that you do not have a SSH key setup on bitbucket, as Git != Github. Log into Bitbucket, click "manage account" in top right, click "SSH Key" to add your key. If you aren't sure how to create a Key, Github has a good tutorial [HERE](https://help.github.com/articles/generating-ssh-keys/) (Just skip step 3). 
 
 If your Bedrock project already exists, run `composer run-script post-root-package-install` in order to set it up locally.
 
