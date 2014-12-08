@@ -31,6 +31,10 @@ body {
 	@media (min-width: $breakpoint-3) {
 		font-size: $body-font-size;
 	}
+
+	&.loaded {
+		opacity: 1;
+	}
 }
 
 p {

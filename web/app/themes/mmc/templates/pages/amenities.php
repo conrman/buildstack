@@ -1,3 +1,5 @@
+<!-- Amenities -->
+
 <section class="apartment-amenities">
 	<div class="amenities-wrapper">
 		<div class="container">

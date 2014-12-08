@@ -12,6 +12,7 @@ http://onenexusproject.com - http://edmundreed.co.uk
 Base
 ******************************************************************/
 @import "base/normalize";
+@import "../vendor/fontawesome/scss/font-awesome";
 @import "base/variables";
 @import "../vendor/jeet/scss/jeet/index";
 @import "base/base";
@@ -20,8 +21,6 @@ Base
 @import "base/helpers";
 @import "base/print";
 @import "base/sprite";
-@import "../vendor/fontawesome/scss/font-awesome";
-@import "base/theme";
 
 /******************************************************************
 Cosmetic

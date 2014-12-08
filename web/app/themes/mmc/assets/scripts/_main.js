@@ -23,17 +23,12 @@ var Roots = {
 	common: {
 		init: function() {
 
-			$('body').css('opacity', '1');
+			$('body').addClass('loaded');
 			Roots.common.offCanvasNav();
-			Roots.common.smoothScroll();
 			Roots.common.scrollToTop();
 			Roots.common.fancybox();
 			// Roots.common.modal();
-			// Roots.common.tooltip();
 
-			// Moves the .info-wrapper above/below .logo
-			Roots.common.infoWrapper()
-			$(window).resize(function() { Roots.common.infoWrapper() });
 
 		},
 		/******************************************************************
@@ -41,31 +36,26 @@ var Roots = {
 		******************************************************************/
 		offCanvasNav: function() {
 			$("#app-header .main-nav > ul").clone().appendTo("#off-canvas-nav");
+			$('.contact.button').clone().appendTo('#off-canvas-nav');
 		},
 		/******************************************************************
 		Smooth Scroll
 		******************************************************************/
-		smoothScroll: function() {
-
-			$('a[href*=#]').click(function() {
-				if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
-					var target = $(this.hash);
-					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-					if (target.length) {
-						$('html,body').animate({
-							scrollTop: target.offset().top
-						}, 1200);
-						return false;
-					}
-				}
-			});
+		smoothScroll: function(e) {
+			var target = e;
+			target = target.length ? target : $('[name=' + e.hash.slice(1) +']');
+			if (target.length) {
+				$('html,body').animate({
+					scrollTop: target.offset().top
+				}, 1200);
+				return false;
+			}
 
 		},
 		/******************************************************************
 		Scroll to Top
 		******************************************************************/
 		scrollToTop: function() {
-
 			$(window).bind("scroll", function() {
 				if ($(this).scrollTop() > 350) {
 					$(".scroll-top").addClass('active');
@@ -99,13 +89,8 @@ var Roots = {
 		/******************************************************************
 		Tooltip
 		******************************************************************/
-		tooltip: function() {
-
-			$('.tooltip').tipr({
-				'speed': 300,
-				'mode': 'top'
-			});
-
+		tooltip: function(target, options) {
+			$(target).tipr(options);
 		},
 		/******************************************************************
 		Fancybox
@@ -114,99 +99,94 @@ var Roots = {
 			$('.fancybox').fancybox();
 		},
 		/******************************************************************
-		Info Wrapper
+		Isotope
 		******************************************************************/
-		infoWrapper: function() {
-			var ww = $(window).width();
-			var infoWrapper = $('.info-wrapper');
-			var original = $('.main-nav');
-			var target = '.app-header';
-
-			if (ww < 925) {
-				infoWrapper.prependTo(target);
-			} else {
-				infoWrapper.prependTo(original);
-			}
-		}
-	},
-	// Home page
-	home: {
-		init: function() {
-			Roots.home.main_slider();
-
-			$('.contact-badge-1').click(function() { window.location = '/location'; });
-			$('.contact-badge-3').click(function() { window.location = '/contact'; });
+		isotope: function(container, options) {
+			var $container = $(container).imagesLoaded( function() {
+				$container.isotope(options);
+			});
 		},
 		/******************************************************************
-		Main Slider
+		Slick Slider
 		******************************************************************/
-		main_slider: function() {
-
-			$("#home-slider").slick({
-				cssEase: 'linear',
+		slickSlider: function(target, options) {
+			$(target).slick(options);
+		},
+		/******************************************************************
+		Match Height
+		******************************************************************/
+		matchHeight: function(target) {
+			$(target).matchHeight();
+		}
+	},
+	home: {
+		init: function() {
+			Roots.common.slickSlider("#home-slider", {
+				cssEase: 'ease-in-out',
 				touchMove: false,
 				autoplay: true,
-				autoplaySpeed: 0,
+				autoplaySpeed: 2000,
 				accessibility: false,
 				draggable: false,
-				speed: 25000
+				speed: 2500,
+				arrows: true,
+				centerMode: true,
+				variableWidth: true,
 			});
 		}
 	},
-	floor_plans: {
+	amenities: {
 		init: function() {
-			Roots.floor_plans.nav_bedroom();
-			Roots.floor_plans.nav_unit();
-
-			var src = swap_src = "";
-			$('.bed-select > img').mouseover(function() {
-				src = $(this).attr('src');
-				swap_src= $(this).data('swap');
-
-				if (!$(this).parent().hasClass('active')) {
-					$(this).attr('src', swap_src).data('swap', src);
+			Roots.common.isotope('#amenities', {
+				layoutMode: 'masonry',
+				isFitWidth: true,
+				itemSelector: '.item',
+				masonry : {
+					columnWidth: '.item'
 				}
 			});
-			$('.bed-select > img').mouseout(function() {
-				if (!$(this).parent().hasClass('active')) {
-					$(this).attr('src', src).data('swap', swap_src);
-				}
-			});
-
+		}
+	},
+	spaces: {
+		init: function() {
+			Roots.spaces.bedNav();
+			Roots.spaces.unitSelect();
 		},
-		nav_bedroom: function() {
-			$('.bedroom-units > [data-beds="two bedroom"]').hide();
+		bedNav: function() {
 			$('.bed-select').click(function() {
-				var src = swap_src = "";
-				src = $('.bed-select.active').children('img').attr('src');
-				swap_src = $('.bed-select.active').children('img').data('swap');
-
-				if (!$(this).hasClass('active')) {
-					$('.bed-select.active').children('img').attr('src', swap_src);
-					$('.bed-select.active').children('img').data('swap', src);
-				}
-
 				$('.bed-select').removeClass('active');
-				var beds = $(this).addClass('active').data('beds');
-				$('.bedroom-units > .bed-unit').hide();
-				$('.bedroom-units > [data-beds="' + beds + '"]').show();
+				$(this).addClass('active');
+
+				var beds = $(this).data('beds');
+				$('.floorplan-excerpt.active').removeClass('active');
+				$('.floorplan-excerpt[data-beds="' + beds + '"]').addClass('active');
 			});
 		},
-		nav_unit: function() {
-			$('.bed-unit').click(function() {
-				$('.bed-unit').removeClass('active');
-				var floorplan = $(this).addClass('active').data('floorplan');
-				$('.floorplan-unit').hide();
-				$('.floorplan-unit[data-floorplan="' + floorplan + '"]').show();
+		unitSelect: function() {
+			$('.floorplan-excerpt').click(function() {
+				var floorplan = $(this).data('floorplan');
+				var $floorplan = $('.floorplan-unit[data-floorplan="' + floorplan + '"]');
+				if ($floorplan.hasClass('selected')) {
+					$(this).parent().next().remove();
+					$floorplan.removeClass('selected');
+				} else {
+					$(this).parent().next().remove();
+					$('.floorplan-unit').removeClass('selected');
+					$floorplan.clone().insertAfter($(this).parent()).addClass('selected');
+				}
 			});
 		}
 	},
-	gallery: { 
+	photos: { 
 		init: function() {
-			// Roots.gallery.grid_gallery();
-		},
-		grid_gallery: function() {
-
+			Roots.common.isotope('#gallery-collage', {
+				layoutMode: 'masonry',
+				isFitWidth: true,
+				itemSelector: '.gallery-item',
+				masonry : {
+					columnWidth: '.gallery-item',
+				}
+			});
 		}
 	},
 	location: {
@@ -220,6 +200,11 @@ var Roots = {
 	contact: {
 		init: function() {
 			$('.contact-form`').matchHeight();
+		}
+	},
+	residents: {
+		init: function() {
+			Roots.common.matchHeight('.widget');
 		}
 	}
 };

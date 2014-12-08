@@ -20,3 +20,4 @@ function device_detect($device) {
   $detect = new Mobile_Detect;
   $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
   return ($device == $deviceType) ? true : false;
+}
