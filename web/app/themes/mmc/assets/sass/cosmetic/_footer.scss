@@ -15,28 +15,19 @@
 	Start building the basic layout for lowest resoluton
 	******************************************************************/
 
-	.footer-wrapper [class*="span"] > * {
-		text-align: center;
-		margin: 1em auto;
-	}
-
-	
 	.disclaimer {
 		font-size: 8px;
-	}
-
-	.footer-icons a {
-		display: block;
 	}
 
 	.footer-nav {
 		ul {
 			@extend ul.reset;
-		}
-		li {
-			display: inline-block;
-			&:not(:last-child) {
-				margin-right: 1em;
+
+			li {
+				display: inline-block;
+				&:not(:last-child) {
+					margin-right: 1em;
+				}
 			}
 		}
 	}
@@ -55,32 +46,12 @@
 			width: 100%;
 			text-align: center;
 		}
-		.copyright, .footer-nav {
-			display: table-cell;
-			vertical-align: middle;
-		}
-		.footer-nav {
-			text-align: right;
-		}
-
 	}
 
 	@media (min-width: $breakpoint-3) {
-		.icon-logo_footer_greystar {
-			position: relative;
-			top: -1em;
-		}
 	}
 
 	@media (min-width: $breakpoint-4) {
-		.footer-icons {
-			padding: 0;
-
-			[class*="icon-"] {
-				float: left;
-				margin: 0 5px;
-			}
-		}
 	}
 
 } // End .app-footer

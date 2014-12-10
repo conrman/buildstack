@@ -9,7 +9,7 @@
 
 	/* Build base for plain text logos */
 	.logo-name {
-		color: $logo-name-color !important;
+		color: $logo-name-color;
 		display: inline-block;
 		font-family: $logo-name-font-family;
 		letter-spacing: $logo-name-letter-spacing;

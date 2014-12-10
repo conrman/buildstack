@@ -4,240 +4,27 @@
 
 main.home {
 
-
 	/******************************************************************
 	Start building the basic layout for lowest resoluton
 	******************************************************************/
 
-	#home-slider {
-		border-top: 5px solid $brand-2;
-		border-bottom: 5px solid $brand-3;
-	}
 
-	.slide-wrapper {
-		position: relative;
-
-		.badge {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			margin: auto;
-
-			width: 100%;
-			max-width: 150px;
-		}
-	}
-
-	.romance {
-
-		.romance-wrapper {
-			border-bottom: 5px solid $brand-2;
-		}
-
-		.content {
-			margin-bottom: 1em;
-		}
-
-		h1 {
-			color: $brand-1;
-		}
-	}
-
-	.romance-thumbnails-wrapper {
-		position: relative;
-		margin-top: 3.5em;
-
-		.romance-thumbnails {
-			position: absolute;
-			width: 100%; 
-			z-index: 333;
-		}
-	}
-
-	.map > .map-wrapper {
-		background: url(../images/bg_homepage_map.jpg);
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		height: 30vh;
-		max-height: 200px;
-		width: 100%;
-		position: relative;
-
-		&:after, &:before {
-			content: '';
-			display: table;
-			height: 5px;
-			width: 100%;
-			position: absolute;
-		}
-		&:after {
-			background: $brand-3;
-			top: 8px;
-		}
-		&:before {
-			background: $brand-2;
-			top: 21px;
-		}
-
-		> .map-gfx {
-			display: none;
-		}
-	}
-
-	.bar {
-		position: relative;
-		top: -1px;
-		z-index: 3;
-
-		> img { width: 100%; }
-
-		.lease-now-link {
-			display: table;
-			height: 0;
-		}
-
-		.lease-now {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: -1.5em;
-			
-			bottom: 0;
-			margin: auto;
-			z-index: 3;
-			width: 100%;
-			padding: 0 5em;
-		}
-	}
-
-	.contact {
-
-		position: relative;
-		top: -1em;
-
-		.block-columns {
-			width: 100%;
-			display: table;
-		}
-
-		.contact-image { 
-			margin: 1em auto; 
-			padding: 1em;
-			width: 100%;
-		}
-
-		[class*='contact-badge']:not(.contact-badge-2) {
-			cursor: pointer;
-		}
-
-		.contact-badge-1 { background: $brand-3; }
-		.contact-badge-2 { background: $brand-2; }
-		.contact-badge-3 { background: $brand-5; }
-	}
-
+	
 	/******************************************************************
 	Start building for larger resolutions
 	******************************************************************/
 
-	@media (min-width: $breakpoint-1) {
 	
-		.slide-wrapper .badge {
-			max-width: 190px;
-		}
-
-		.map > .map-wrapper {
-			max-height: 100%;
-		}
-
-		.map > .map-wrapper > .map-gfx {
-			display: inline-block;
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			margin: 0 auto;
-			text-align: center;
-			
-			img {
-				width: 100%;
-				max-width: 960px;
-				vertical-align: bottom;
-			}
-		}
-
-		.romance-thumbnails-wrapper {
-			margin-top: -2em;
-		}
-
-		.romance .content {
-			margin-bottom: 8em;
-		}
-
-		.map > .map-wrapper {
-			height: 50vh;
-		}
-
-		.bar .lease-now {
-			max-width: 539px;
-			top: -1.25em;
-		}
+	@media (min-width: $breakpoint-1) {
 	}
 
 	@media (min-width: $breakpoint-2) {
-
-		.slide-wrapper .badge {
-			max-width: 280px;
-		}
-
-		.romance-thumbnails-wrapper {
-			margin-top: -4em;
-		}
-
-		.bar .lease-now {
-			padding: 0 5em;
-		}
-
-		.map-gfx {
-			max-width: 760px;
-		}
 	}
 
 	@media (min-width: $breakpoint-3) {
-
-		.slide-wrapper .badge {
-			max-width: 310px;
-		}
-
-		.romance-thumbnails-wrapper {
-			margin-top: -6em;
-		}
-
-		.map > .map-wrapper {
-			height: 70vh;
-		}
-
-		.bar .lease-now {
-			padding: 0;
-		}
-
-		.map-gfx {
-			max-width: 960px;
-		}
 	}
 
 	@media (min-width: $breakpoint-4) {
-		.slide-wrapper .badge {
-			max-width: 370px;
-		}
-	}
-
-	@media (min-width: $breakpoint-5) {
-		.slide-wrapper .badge {
-			max-width: 500px;
-		}
 	}
 
 

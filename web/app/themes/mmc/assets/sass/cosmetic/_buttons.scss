@@ -19,8 +19,7 @@ Basic Structure
 	text-transform: $button-text-transform;
 	line-height: $button-line-height;
 	&:hover {
-		// background: darken($button-background, 10%);
-		background: $brand-2;
+		background: $button-hover-background;
 		text-decoration: none;
 	}
 
@@ -71,39 +70,6 @@ Basic Structure
 		padding: 0 1.3em;
 	}
 
-	/******************************************************************
-	Color Variants
-	******************************************************************/
-
-	/* Brand Colors */
-
-	@function brand($name) {
-		@return nth($brand-colors, index($brand-names, $name))
-	}
-
-	@each $name in $brand-names {
-		&.#{$name} {
-			background: brand($name);
-			&:hover {
-				background: darken(brand($name), 10%);
-			}
-		}
-	}
-
-	/* Emotional Colors */
-
-	@function emotional($name) {
-		@return nth($emotional-colors, index($emotional-names, $name))
-	}
-
-	@each $name in $emotional-names {
-		&.#{$name} {
-			background: emotional($name);
-			&:hover {
-				background: darken(emotional($name), 10%);
-			}
-		}
-	}
 
 } // End .button
 

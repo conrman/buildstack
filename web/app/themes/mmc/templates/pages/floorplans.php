@@ -27,7 +27,7 @@
 <section class="page-wrapper">
 	<div class="container">
 		<?php $i = 1;
-		foreach ($floorplans as $post) : setup_postdata($post); ?>
+		if (!empty($floorplans)) : foreach ($floorplans as $post) : setup_postdata($post); ?>
 		<?php echo "<!-- ".get_the_title()." Floorplan -->"; ?>
 		<div class="floorplan-excerpt active" 
 			data-beds="<?php echo bedsToString(get_field('bedrooms')); ?>"
@@ -41,6 +41,6 @@
 			<?php get_template_part('templates/modules/floorplan', 'info'); ?>
 		</div>
 		<?php $i++;
-		endforeach; ?>
+		endforeach; endif; ?>
 	</div>
 </section>

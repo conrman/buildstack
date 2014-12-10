@@ -230,10 +230,10 @@ Brand Colors
 
 @each $color in $brand-names {
 	.bg-#{$color} {
-		background: brandColors(#{$color});
+		background: brand(#{$color});
 	}
 	.text-#{$color} {
-		color: brandColors(#{$color});
+		color: brand(#{$color});
 	}
 }
 

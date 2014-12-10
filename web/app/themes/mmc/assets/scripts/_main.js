@@ -27,6 +27,7 @@ var Roots = {
 			Roots.common.offCanvasNav();
 			Roots.common.scrollToTop();
 			Roots.common.fancybox();
+			Roots.common.smoothScroll();
 			// Roots.common.modal();
 
 
@@ -36,21 +37,23 @@ var Roots = {
 		******************************************************************/
 		offCanvasNav: function() {
 			$("#app-header .main-nav > ul").clone().appendTo("#off-canvas-nav");
-			$('.contact.button').clone().appendTo('#off-canvas-nav');
 		},
 		/******************************************************************
 		Smooth Scroll
 		******************************************************************/
 		smoothScroll: function(e) {
-			var target = e;
-			target = target.length ? target : $('[name=' + e.hash.slice(1) +']');
-			if (target.length) {
-				$('html,body').animate({
-					scrollTop: target.offset().top
-				}, 1200);
-				return false;
-			}
-
+			$('a[href*=#]').click(function() {
+				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+					if (target.length) {
+						$('html,body').animate({
+							scrollTop: target.offset().top
+						}, 1200);
+						return false;
+					}
+				}
+			});
 		},
 		/******************************************************************
 		Scroll to Top
@@ -67,24 +70,8 @@ var Roots = {
 		/******************************************************************
 		Modals
 		******************************************************************/
-		modal: function() {
-
-			$('.modal-image').magnificPopup({
-				type: 'image',
-			});
-
-			$('.modal-gallery').magnificPopup({
-				type: 'image',
-				delegate: 'a',
-				gallery: {
-					enabled: true
-				},
-			});
-
-			$('.inline-modal').magnificPopup({
-				type:'inline',
-				midClick: true,
-			});
+		modal: function(target, options) {
+			$(target).magnificPopup(options);
 		},
 		/******************************************************************
 		Tooltip
@@ -137,17 +124,10 @@ var Roots = {
 	},
 	amenities: {
 		init: function() {
-			Roots.common.isotope('#amenities', {
-				layoutMode: 'masonry',
-				isFitWidth: true,
-				itemSelector: '.item',
-				masonry : {
-					columnWidth: '.item'
-				}
-			});
+			
 		}
 	},
-	spaces: {
+	floor_plans: {
 		init: function() {
 			Roots.spaces.bedNav();
 			Roots.spaces.unitSelect();
@@ -177,16 +157,8 @@ var Roots = {
 			});
 		}
 	},
-	photos: { 
+	gallery: { 
 		init: function() {
-			Roots.common.isotope('#gallery-collage', {
-				layoutMode: 'masonry',
-				isFitWidth: true,
-				itemSelector: '.gallery-item',
-				masonry : {
-					columnWidth: '.gallery-item',
-				}
-			});
 		}
 	},
 	location: {
@@ -199,12 +171,10 @@ var Roots = {
 	},
 	contact: {
 		init: function() {
-			$('.contact-form`').matchHeight();
 		}
 	},
 	residents: {
 		init: function() {
-			Roots.common.matchHeight('.widget');
 		}
 	}
 };

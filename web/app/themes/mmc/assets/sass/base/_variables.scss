@@ -32,9 +32,9 @@ Typography
 
 /* Fonts */
 
-$font-1: 'Pacifico', cursive;
-$font-2: 'Raleway', sans-serif;
-$font-3: 'Roboto', sans-serif;
+$font-1: "Droid Sans", cursive;
+$font-2: "Raleway", sans-serif;
+$font-3: "Roboto", sans-serif;
 
 $sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serif: "Georgia", Cambria, Times New Roman, Times, serif;
@@ -45,7 +45,7 @@ $base-font-size:		1.1rem;
 $large-font-size:	1.3rem;
 $small-font-size:	$base-font-size * 0.70;
 
-$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts"; // for referencing Bootstrap CDN font files directly
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.1.0/fonts" !default; // for referencing Bootstrap CDN font files directly
 
 
 /******************************************************************
@@ -221,15 +221,18 @@ $heading-text-transform: 		normal;
 /* button */
 $button-background: 		$brand-1;
 $button-border-color: 		$brand-1;
-$button-color: 			$white;
-$button-font-family: 		$font-3;
-$button-font-size: 		1rem;
+$button-color: 				$white;
+$button-font-family: 		$font-1;
+$button-font-size: 			1rem;
 $button-letter-spacing: 	1;
 $button-line-height: 		1.5;
-$button-padding: 		1.2em;
+$button-padding: 			1.2em;
 $button-text-decoration: 	none;
 $button-text-transform: 	uppercase;
 
+$button-hover-background: 	$brand-2;
+
+$button-submit-background: 	$brand-1;
 
 /* input.box */
 $input-box-background: 		$white;

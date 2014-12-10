@@ -1,9 +1,53 @@
-@function brandColors($color) {
-	@return nth($brand-colors, index($brand-names, $color));
+/******************************************************************
+Color Variants
+******************************************************************/
+
+/* Brand Colors */
+
+@function brandColors($name) {
+	@return nth($brand-colors, index($brand-names, $name))
 }
+
+@each $name in $brand-names {
+	.#{$name} {
+		background: brandColors($name);
+		&:hover {
+			background: darken(brandColors($name), 10%);
+		}
+	}
+}
+
+
+
+/* Emotional Colors */
+
+@function emotionalColors($name) {
+	@return nth($emotional-colors, index($emotional-names, $name))
+}
+
+@each $name in $emotional-names {
+	.#{$name} {
+		background: emotionalColors($name);
+		&:hover {
+			background: darken(emotionalColors($name), 10%);
+		}
+	}
+}
+
+
+/* Social Colors */
 
 @function socialColors($color) {
 	@return nth($social-colors, index($social-names, $color));
+}
+
+@each $name in $social-names {
+	.#{$name} {
+		background: socialColors($name);
+		&:hover {
+			background: darken(socialColors($name), 10%);
+		}
+	}
 }
 
 

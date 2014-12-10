@@ -4,5 +4,28 @@
 
 main.location {
 
+	/******************************************************************
+	Start building the basic layout for lowest resoluton
+	******************************************************************/
+
+	
+	
+	/******************************************************************
+	Start building for larger resolutions
+	******************************************************************/
+
+	
+	@media (min-width: $breakpoint-1) {
+	}
+
+	@media (min-width: $breakpoint-2) {
+	}
+
+	@media (min-width: $breakpoint-3) {
+	}
+
+	@media (min-width: $breakpoint-4) {
+	}
+
 
 } /* End .location */

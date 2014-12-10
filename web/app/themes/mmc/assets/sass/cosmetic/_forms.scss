@@ -20,20 +20,40 @@ form {
 		transition: 0.4s;
 		width: 100%;
 		&:focus, &:hover {
-			border-color: $brand-1;
+			border: $input-box-hover-border;
 		}
 
 		&::-webkit-input-placeholder {
+			background: $input-box-placeholder-background;
 			color: $input-box-placeholder-color;
+			font-family: $input-box-placeholder-font-family;
+			text-align: $input-box-placeholder-text-align;
+			text-transform: $input-box-placeholder-text-transform;
+			letter-spacing: $input-box-placeholder-letter-spacing;
 		}
 		&::-moz-placeholder { /* Firefox 19+ */
+			background: $input-box-placeholder-background;
 			color: $input-box-placeholder-color;
+			font-family: $input-box-placeholder-font-family;
+			text-align: $input-box-placeholder-text-align;
+			text-transform: $input-box-placeholder-text-transform;
+			letter-spacing: $input-box-placeholder-letter-spacing;
 		}
 		&:-ms-input-placeholder {
+			background: $input-box-placeholder-background;
 			color: $input-box-placeholder-color;
+			font-family: $input-box-placeholder-font-family;
+			text-align: $input-box-placeholder-text-align;
+			text-transform: $input-box-placeholder-text-transform;
+			letter-spacing: $input-box-placeholder-letter-spacing;
 		}
 		&:-moz-placeholder { /* Firefox 18- */
+			background: $input-box-placeholder-background;
 			color: $input-box-placeholder-color;
+			font-family: $input-box-placeholder-font-family;
+			text-align: $input-box-placeholder-text-align;
+			text-transform: $input-box-placeholder-text-transform;
+			letter-spacing: $input-box-placeholder-letter-spacing;
 		}
 	}
 	label {
@@ -48,7 +68,7 @@ form {
 			display: inline;
 		}
 		&[type="submit"], button {
-			background: $brand-1;
+			background: $button-submit-background;
 			border: none;
 			color: white;
 			padding: 0.25em 1em;
@@ -63,7 +83,7 @@ form {
 		color: $base-text-color;
 
 		&.box {
-			padding: 0.44em !Important;
+			padding: 0.44em !important;
 		}
 	}
 

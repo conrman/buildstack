@@ -8,77 +8,7 @@ main.contact {
 	Start building the basic layout for lowest resoluton
 	******************************************************************/
 
-	.bar {
-		position: relative;
-		top: -1px;
-		z-index: 3;
-
-		> img { width: 100%; }
-
-		.lets-get-together-wrapper {
-			display: table;
-			height: 0;
-		}
-
-		.lets-get-together {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			z-index: 3;
-			width: 100%;
-			padding: 0 5em;
-		}
-	}
-
-	.contact-form {
-		position: relative;
-		top: -1em;
-	}
-
-	.contact-form-wrapper {
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		display: table;
-		padding: 1em;
-
-		> div:first-child {
-			display: table-cell;
-			height: 100%;
-			width: 100%;
-			vertical-align: middle;
-		}
-	}
-
-	.contact-badge-wrapper {
-		img {
-			margin: 2em 0;
-			padding: 0 2em;
-		}
-	}
-
-	.disclaimer {
-		font-size: 8px;
-		font-weight: bold;
-	}
-
-	.contact {
-		display: table;
-		margin-bottom: -1em;
-	}
-
-	.office-hours {
-		border-top: 5px solid $brand-2;
-		border-bottom: 5px solid $brand-2;
-		padding: 2em;
-
-		h2, p {
-			color: $white;
-		}	
-	}
+	
 
 
 	/******************************************************************
@@ -86,52 +16,12 @@ main.contact {
 	******************************************************************/
 
 	@media (min-width: $breakpoint-1) {
-
-		.contact-form-wrapper {
-			// padding: 9em 1em 1em;
-		}
-
-		.contact-badge-wrapper .badge {
-			width: 50%;
-			float: left;
-		}
-
-		.bar .lets-get-together {
-			max-width: 465px;
-		}
 	}
 
 	@media (min-width: $breakpoint-2) {
-
-		.contact-form-wrapper {
-			// padding: em 1em 1em;
-		}
-
-		.contact-form-wrapper {
-			width: 66.66666666667%;
-			float: left;
-			margin: 0;
-		}
-
-		.contact-badge-wrapper {
-			width: 33.33333333337%;
-			float: right;
-		}
-
-		.contact-badge-wrapper .badge {
-			width: 100%;
-		}
-
-		.bar .lets-get-together {
-			padding: 0 5em;
-		}
 	}
 
 	@media (min-width: $breakpoint-3) {
-
-		.bar .lets-get-together {
-			padding: 0;
-		}
 	}
 
 	@media (min-width: $breakpoint-4) {

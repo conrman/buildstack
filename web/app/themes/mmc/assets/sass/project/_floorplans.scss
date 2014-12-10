@@ -8,167 +8,23 @@ main.floor-plans {
 	Start building the basic layout for lowest resoluton
 	******************************************************************/
 
-	.floorplans-bed-nav {
-		background-image: url(../images/gfx_floorplans_grungy_yellow_bar.png);
-		background-size: cover;
-		background-repeat: no-repeat;
-		clear: both;
-		margin: 0 0 2em;
-		padding: 0.95em 0 1.5em;
-		
-		.bed-select {
-			img {
-				padding: 0 1em;
-			}
-		}
-	}
-
-
-	.floorplans-unit-nav {
-		.bedroom-units > div {
-			display: inline-block;
-			height: 5em;
-			width: 5em;
-			position: relative;
-
-			span {
-				color: $white;
-				cursor: pointer;
-				font-size: 2em;
-				font-weight: 200;
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				height: 1.5em;
-				margin: auto;
-			}
-
-			&:nth-child(even) {
-				background-image: url(../images/gfx_floorplans_orange_starburst.png);
-				background-size: contain;
-			}
-			&:nth-child(odd) {
-				background-image: url(../images/gfx_floorplans_blue_starburst.png);
-				background-size: contain;
-			}
-
-			&.active span,
-			&:hover span {
-				color: $black;
-			}
-		}
-	}
-
-	.floorplan-unit {
-		padding: 1em 0;
-	}
-
-	.unit-info h1 {
-		color: $brand-1;
-		font-size: 30px;
-		line-height: 1.5;
-		padding: 0.5em 0;
-		margin: 0;
-
-		span {
-			display: inline-block;
-			position: relative;
-		}
-	}
-
-	.floorplan-share {
-		background-image: url(../images/gfx_floorplans_brown_grungy_bar.png);
-		background-repeat: repeat-x;
-		border-top: 5px solid $brand-2;
-		color: white;
-		padding: 2.5em 0 4em;
-		text-transform: uppercase;
-
-		.share {
-			margin-right: 0.25em;
-		}
-
-		.fa-stack {
-			margin: 0 0.15em;
-		}
-
-		.fa-circle, .fa-pinterest {
-			color: $brand-1;
-
-			+ .fa {
-				color: $brand-5;
-			}
-		}
-
-		a:hover {
-			.fa-circle, .fa-pinterest {
-				color: $brand-2;
-			}
-		}
-	}
-
-	.floorplan-image {
-		padding: 0 1em;
-	}
-
-	.disclaimer {
-		font-size: 8px;
-		font-weight: bold;
-		margin: 2em 0;
-	}
-
-	.mits-feed-availability {
-
-		> span {
-			color: $brand-1;
-			display: block;
-			padding-top: 1em;
-			text-transform: uppercase;
-		}
-
-		.box {
-			background: $brand-3;
-		}
-
-		input, select {
-			margin-top: 0.5em;
-		}
-	}
+	
 
 	/******************************************************************
 	Start building for larger resolutions
 	******************************************************************/
 
+
 	@media (min-width: $breakpoint-1) {
-		.unit-info span:nth-child(1):after {
-			content: '•';
-			display: inline-block;
-			position: absolute;
-			right: -0.75em;
-		}
-
-		.floorplans .unit-info h1 {
-			padding: 1em;
-		}
-
-		.floorplan-share {
-			padding: 1.5em 0 2em;
-		}
 	}
 
 	@media (min-width: $breakpoint-2) {
-		.unit-info span:nth-child(2):after {
-			content: '•';
-			display: inline-block;
-			position: absolute;
-			right: -0.75em;
-		}
+	}
 
-		.floorplan-share {
-			padding: 1.5em 0 2em;
-		}
+	@media (min-width: $breakpoint-3) {
+	}
+
+	@media (min-width: $breakpoint-4) {
 	}
 
 } /* End .floorplans */

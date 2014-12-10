@@ -2,7 +2,7 @@
 <?php global $display_options;?>
 
 <?php if (!empty($display_options)) : ?>
-	<address class="min-bp2">
+	<address>
 		<a href="http://google.com/maps/place/<?php echo $display_options['address'] . ' ' . $display_options['city'] . ' ' . $display_options['state']; ?>" target="_blank">
 			<?php if (!empty($display_options['address'])) : ?>
 				<span class="street-address">

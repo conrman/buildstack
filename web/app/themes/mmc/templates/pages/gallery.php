@@ -7,12 +7,13 @@
 	<div class="container">
 		<div id="gallery-collage">
 			<?php $i = 0;
-			foreach ($gallery_thumbnails as $image) : ?>
+			if (!empty($gallery_thumbnails)) : foreach ($gallery_thumbnails as $image) : ?>
 			<a class="gallery-item fancybox" href="<?php echo $gallery_images[$i]['url']; ?>" rel="gallery">
 				<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
 			</a>
 			<?php $i++;
-			endforeach; ?>
+			endforeach; endif;
+			?>
 		</div>
 	</div>
 </section>
