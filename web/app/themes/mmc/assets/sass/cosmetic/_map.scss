@@ -11,17 +11,17 @@
 	******************************************************************/
 
 
-	$map-nav-categories: shop dine caffeine excite;
-	@each $category in $map-nav-categories {
-		.map-nav-link > .#{$category}:first-child {
-			@extend .icon-gfx_location_#{$category};
+	// $map-nav-categories: shop dine caffeine excite;
+	// @each $category in $map-nav-categories {
+	// 	.map-nav-link > .#{$category}:first-child {
+	// 		@extend .icon-gfx_location_#{$category};
 
-			&.active,
-			&:hover {
-				@extend .icon-gfx_location_#{$category}_over;
-			}
-		}
-	}
+	// 		&.active,
+	// 		&:hover {
+	// 			@extend .icon-gfx_location_#{$category}_over;
+	// 		}
+	// 	}
+	// }
 
 	.map-nav-link {
 		.nav-item {
