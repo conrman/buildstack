@@ -4,6 +4,6 @@
 		<?php get_template_part('templates/modules/navigation', 'header'); ?>
 
 		<!-- Mobile Menu Trigger Button -->
-		<a class="nav-trigger max-bp3" href="#"><span>menu</span></a>
+		<a class="nav-trigger max-bp3" href="#"><span class="navicon">menu</span></a>
 	</div>
 </header>

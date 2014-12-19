@@ -7,15 +7,15 @@ use Composer\Script\Event;
 
 class Installer {
 	public static $KEYS = array(
-		'AUTH_KEY',
-		'SECURE_AUTH_KEY',
-		'LOGGED_IN_KEY',
-		'NONCE_KEY',
-		'AUTH_SALT',
-		'SECURE_AUTH_SALT',
-		'LOGGED_IN_SALT',
-		'NONCE_SALT'
-		);
+	                            'AUTH_KEY',
+	                            'SECURE_AUTH_KEY',
+	                            'LOGGED_IN_KEY',
+	                            'NONCE_KEY',
+	                            'AUTH_SALT',
+	                            'SECURE_AUTH_SALT',
+	                            'LOGGED_IN_SALT',
+	                            'NONCE_SALT'
+	                            );
 
 	public static function setupEnvironment(Event $event) {
 		$root = dirname(dirname(__DIR__));
@@ -49,23 +49,24 @@ class Installer {
 			file_put_contents($env_file, implode($salts, "\n"), FILE_APPEND | LOCK_EX);
 			$file = file_get_contents($env_file);
 			$file = str_replace(
-				array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
-				array($db_name, $db_user, $db_pass, $env, $url),
-				$file
-				);
+			                    array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
+			                    array($db_name, $db_user, $db_pass, $env, $url),
+			                    $file
+			                    );
 			file_put_contents($env_file, $file);
 
 			// Setup vhost
 			$vhost = file_get_contents($root . '/.vhost.example');
 			$vhost = str_replace(
-				array('{{site_url}}', '{{project_name}}', '{{user}}'),
-				array($url, $project_name, $system_user),
-				$vhost
-				);
+			                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
+			                     array($url, $project_name, $system_user),
+			                     $vhost
+			                     );
 			file_put_contents($root . '/.vhost', $vhost);
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
 
 			// Setup host
+			$io->write("<info>Setup host file</info>");
 			$host = file_get_contents($root . '/host.txt');
 			$host = str_replace('{{site_url}}', $url, $host);
 			file_put_contents($root . '/.host', $host);
@@ -86,11 +87,20 @@ class Installer {
 				file_put_contents($root . '/flightplan.js', $flightplan);
 			}
 
-			// Restart Apache
+			$io->write("<info>Restarting Apache</info>");
 			shell_exec('sudo apachectl restart');
 
-			// Create database
-			shell_exec('wp db create');
+			$io->write("<info>Creating Database</info>");
+			shell_exec("wp db create");
+
+			$io->write("<info>Setting up theme</info>")
+			shell_exec("wp theme activate mmc");
+
+			$io->write("<info>Removing default stuff</info>")
+			shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+			
+			$io->write("<info>Removing default stuff</info>")
+			shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 			
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
