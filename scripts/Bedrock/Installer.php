@@ -88,16 +88,16 @@ class Installer {
 
 				
 
-				shell_exec("wp user create wpadmin wpadmin@mailmm.com --role=administrator --user_pass=happy2012");
+				// shell_exec("wp user create wpadmin wpadmin@mailmm.com --role=administrator --user_pass=happy2012");
 
-				$io->write("<info>Setting up theme</info>");
-				shell_exec("wp theme activate mmc");
+				// $io->write("<info>Setting up theme</info>");
+				// shell_exec("wp theme activate mmc");
 
-				$io->write("<info>Removing default stuff</info>");
-				shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+				// $io->write("<info>Removing default stuff</info>");
+				// shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 				
-				$io->write("<info>Removing default stuff</info>")
-				shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+				// $io->write("<info>Removing default stuff</info>")
+				// shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 			}
 			
 			$io->write("<info>Restarting Apache</info>");
