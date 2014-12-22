@@ -23,7 +23,12 @@ var Roots = {
 	common: {
 		init: function() {
 
+			// svg fallbacks
+			svgeezy.init(false, 'png');
+
+			// load to avoid FOUC
 			$('body').addClass('loaded');
+
 			Roots.common.offCanvasNav();
 			Roots.common.scrollToTop();
 			Roots.common.fancybox();

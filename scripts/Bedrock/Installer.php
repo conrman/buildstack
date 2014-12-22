@@ -85,23 +85,25 @@ class Installer {
 				$flightplan = file_get_contents($root . '/flightplan.js');
 				$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
 				file_put_contents($root . '/flightplan.js', $flightplan);
+
+				
+
+				// shell_exec("wp user create wpadmin wpadmin@mailmm.com --role=administrator --user_pass=happy2012");
+
+				// $io->write("<info>Setting up theme</info>");
+				// shell_exec("wp theme activate mmc");
+
+				// $io->write("<info>Removing default stuff</info>");
+				// shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+				
+				// $io->write("<info>Removing default stuff</info>")
+				// shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 			}
-
 			$io->write("<info>Restarting Apache</info>");
-			shell_exec('sudo apachectl restart');
+				shell_exec('sudo apachectl restart');
 
-			$io->write("<info>Creating Database</info>");
-			shell_exec("wp db create");
-
-			$io->write("<info>Setting up theme</info>")
-			shell_exec("wp theme activate mmc");
-
-			$io->write("<info>Removing default stuff</info>")
-			shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
-			
-			$io->write("<info>Removing default stuff</info>")
-			shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
-			
+				$io->write("<info>Creating Database</info>");
+				shell_exec("wp db create");
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
