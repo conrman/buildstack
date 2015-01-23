@@ -1,4 +1,5 @@
 <?php
+
 namespace MMC;
 
 use Composer\Script\Event;
@@ -18,7 +19,7 @@ class Builder {
 		shell_exec("wp db create");
 
 		$io->write("<info>Setting up theme</info>");
-		$theme =$io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>");
+		$theme = $io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>", "material");
 		shell_exec("wp theme activate " . $theme);
 
 		$io->write("<info>Removing default stuff</info>");

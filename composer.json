@@ -38,8 +38,7 @@
     "generate-salts": true
   },
   "autoload": {
-    "psr-0": {"Bedrock\\Installer": "scripts"},
-    "psr-1": {"MMC\\Builder": "scripts"}
+    "psr-0": {"Bedrock\\Installer": "scripts", "MMC\\Builder": "scripts"}
   },
   "scripts": {
     "post-root-package-install": ["Bedrock\\Installer::setupEnvironment"],
