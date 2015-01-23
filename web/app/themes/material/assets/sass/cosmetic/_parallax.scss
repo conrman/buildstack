@@ -1,0 +1,35 @@
+// Parallax
+.parallax-container {
+	position: relative;
+	overflow: hidden;
+	height: 500px;
+}
+
+.parallax {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+
+	img {
+		display: none;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+}
+@media #{$medium-and-down} {
+	.parallax-container {
+		height: auto;
+	}
+	.parallax {
+		position: relative;
+		width: 100%;
+
+		img {
+			position: relative;
+		}
+	}
+}

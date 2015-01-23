@@ -1,4 +1,5 @@
 <?php
+// Use this to generate projects in progress
 // composer run-script post-root-package-install
 
 namespace Bedrock;
@@ -7,17 +8,17 @@ use Composer\Script\Event;
 
 class Installer {
 	public static $KEYS = array(
-		'AUTH_KEY',
-		'SECURE_AUTH_KEY',
-		'LOGGED_IN_KEY',
-		'NONCE_KEY',
-		'AUTH_SALT',
-		'SECURE_AUTH_SALT',
-		'LOGGED_IN_SALT',
-		'NONCE_SALT'
-		);
+	                            'AUTH_KEY',
+	                            'SECURE_AUTH_KEY',
+	                            'LOGGED_IN_KEY',
+	                            'NONCE_KEY',
+	                            'AUTH_SALT',
+	                            'SECURE_AUTH_SALT',
+	                            'LOGGED_IN_SALT',
+	                            'NONCE_SALT'
+	                            );
 
-	public static function setupEnvironment(Event $event) {
+	public static function setup(Event $event) {
 		$root = dirname(dirname(__DIR__));
 		$composer = $event->getComposer();
 		$io = $event->getIO();
@@ -49,19 +50,19 @@ class Installer {
 			file_put_contents($env_file, implode($salts, "\n"), FILE_APPEND | LOCK_EX);
 			$file = file_get_contents($env_file);
 			$file = str_replace(
-				array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
-				array($db_name, $db_user, $db_pass, $env, $url),
-				$file
-				);
+			                    array('{{db_name}}', '{{db_user}}', '{{db_password}}', '{{env}}', '{{site_url}}'),
+			                    array($db_name, $db_user, $db_pass, $env, $url),
+			                    $file
+			                    );
 			file_put_contents($env_file, $file);
 
 			// Setup vhost
 			$vhost = file_get_contents($root . '/.vhost.example');
 			$vhost = str_replace(
-				array('{{site_url}}', '{{project_name}}', '{{user}}'),
-				array($url, $project_name, $system_user),
-				$vhost
-				);
+			                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
+			                     array($url, $project_name, $system_user),
+			                     $vhost
+			                     );
 			file_put_contents($root . '/.vhost', $vhost);
 			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
 
@@ -84,37 +85,36 @@ class Installer {
 				// Setup Flightplan
 				$flightplan = file_get_contents($root . '/flightplan.js');
 				$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
-				file_put_contents($root . '/flightplan.js', $flightplan);
-
-				shell_exec("wp user create wpadmin wpadmin@mailmm.com --role=administrator --user_pass=happy2012");
-
-				$io->write("<info>Setting up theme</info>");
-				shell_exec("wp theme activate mmc");
-
-				$io->write("<info>Removing default stuff</info>");
-				shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
-				
-				$io->write("<info>Removing default stuff</info>");
-				shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+				file_put_contents($root . '/flightplan.js', $flightplan);	
 			}
-			
-			$io->write("<info>Restarting Apache</info>");
-			shell_exec('sudo apachectl restart');
-
-			$io->write("<info>Creating Database</info>");
-			shell_exec("wp db create");
-
-			$io->write("<info>Setting up theme</info>");
-			shell_exec("wp theme activate mmc");
-
-			$io->write("<info>Removing default stuff</info>");
-			shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 			
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
 		}
 	}
+
+	public static function builder(Event $event) {
+		$root = dirname(dirname(__DIR__));
+		$composer = $event->getComposer();
+		$io = $event->getIO();
+
+		$io->write("<info>Restarting Apache</info>");
+		shell_exec('sudo apachectl restart');
+
+		$io->write("<info>Creating Database</info>");
+		shell_exec("wp db create");
+
+		$io->write("<info>Setting up theme</info>");
+		shell_exec("wp theme activate mmc");
+
+		$io->write("<info>Removing default stuff</info>");
+		shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
+
+		$io->write("<info>Setting up wpadmin user</info>");
+		shell_exec("wp user create wpadmin wpadmin@mailmmc.com --role=administrator --user_pass=happy2012");
+	}
+
 
 	/*
 	 * Slightly modified/simpler version of wp_generate_password

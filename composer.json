@@ -41,7 +41,8 @@
     "psr-0": {"Bedrock\\Installer": "scripts"}
   },
   "scripts": {
-    "post-root-package-install": ["Bedrock\\Installer::setupEnvironment"]
+    "post-root-package-install": ["Bedrock\\Installer::setup"],
+    "post-root-package-install": ["Bedrock\\Installer::builder"]
   },
   "repositories": [
     {
@@ -52,7 +53,7 @@
       "type": "package",
       "package": {
         "name": "wordpress/wordpress",
-        "version": "4.0.1",
+        "version": "4.1",
         "type": "webroot",
         "dist": {
           "type": "zip",
@@ -77,10 +78,7 @@
       "wpackagist-plugin/contact-form-7-honeypot":"~1.6.1",
       "wpackagist-plugin/contact-form-7-to-database-extension":">=2.8",
       "wpackagist-plugin/wordpress-seo":">=1.5",
-      "wpackagist-plugin/simple-urls":">=0.9.4",
-      "wpackagist-plugin/rb-internal-links":">=2.0.16",
       "wpackagist-plugin/widget-logic":">=0.57",
-      "wpackagist-plugin/members":">=0.2.4",
       "wpackagist-plugin/w3-total-cache":">=0.9.4"
   },
   "extra": {

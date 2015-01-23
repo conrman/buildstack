@@ -1,0 +1,20 @@
+{
+  "name": "MMC WP Template",
+  "version": "1.0.1",
+  "homepage": "http://www.mixedmediacreations.com",
+  "authors": [
+    "Connor Freeman <connor@mailmmc.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "assets/vendor"
+  ],
+  "dependencies": {
+    "modernizr": "2.8.2",
+    "respond": "1.4.2",
+    "fontawesome": "~4.1.0"
+  }
+}

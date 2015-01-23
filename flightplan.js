@@ -17,7 +17,7 @@ plan.briefing({
 		'production': {
 			host: 'hostingbymmc.com',
 			username: '{{project_acronym}}',
-			releases: 'releases',
+			releases: 'reldeployments',
 			privateKey: process.env.HOME + '/.ssh/id_rsa'
 		}
 	}
@@ -40,7 +40,6 @@ plan.remote('deploy', function(remote) {
 // run commands on localhost
 plan.local('deploy', function(local) {
 	local.log('Run build');
-	// local.exec('ssh-agent -a /tmp/foo && export SSH_AUTH_SOCK=/tmp/foo && ssh-add ~/.ssh/id_rsa');
 	local.exec('cd web/app/themes/mmc && bower install && gulp build');
 
 	local.log('Copy files to remote hosts');
