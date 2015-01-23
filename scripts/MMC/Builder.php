@@ -1,5 +1,5 @@
 <?php
-namespace Bedrock;
+namespace MMC;
 
 use Composer\Script\Event;
 
@@ -28,5 +28,5 @@ class Builder {
 		shell_exec("wp user create wpadmin wpadmin@mailmmc.com --role=administrator --user_pass=happy2012");
 	}
 
-
 }
+?>

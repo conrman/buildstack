@@ -39,11 +39,11 @@
   },
   "autoload": {
     "psr-0": {"Bedrock\\Installer": "scripts"},
-    "psr-1": {"Bedrock\\Builder": "scripts"}
+    "psr-1": {"MMC\\Builder": "scripts"}
   },
   "scripts": {
     "post-root-package-install": ["Bedrock\\Installer::setupEnvironment"],
-    "post-create-project-cmd": ["Bedrock\\Builder::buildProject"]
+    "post-create-project-cmd": ["MMC\\Builder::buildProject"]
   },
   "repositories": [
     {

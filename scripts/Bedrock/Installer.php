@@ -134,3 +134,4 @@ class Installer {
 		return $salt;
 	}
 }
+?>
