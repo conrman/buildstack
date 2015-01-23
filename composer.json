@@ -41,8 +41,8 @@
     "psr-0": {"Bedrock\\Installer": "scripts"}
   },
   "scripts": {
-    "post-root-package-install": ["Bedrock\\Installer::setup"],
-    "post-root-package-install": ["Bedrock\\Installer::builder"]
+    "post-root-package-install": ["Bedrock\\Installer::setupEnvironment"],
+    "post-dependencies-solving": ["Bedrock\\Installer::buildProject"]
   },
   "repositories": [
     {

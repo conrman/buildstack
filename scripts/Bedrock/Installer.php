@@ -18,7 +18,7 @@ class Installer {
 	                            'NONCE_SALT'
 	                            );
 
-	public static function setup(Event $event) {
+	public static function setupEnvironment(Event $event) {
 		$root = dirname(dirname(__DIR__));
 		$composer = $event->getComposer();
 		$io = $event->getIO();
@@ -27,8 +27,8 @@ class Installer {
 			$generate_salts = $composer->getConfig()->get('generate-salts');
 		} else {
 			$generate_salts = $io->askConfirmation('<info>Generate salts and append to .env file?</info> [<comment>Y,n</comment>]? ', true);
-			$project_name = $io->ask('<info>What is the name of the project? (Include hyphens) ');
-			$project_acronym = $io->ask('<info>What is the acronym of the project? ');
+			$project_name = $io->ask('<info>What is the name of the project? [<comment>project-name</comment>.dev] ');
+			$project_acronym = $io->ask('<info>What is the acronym of the project? [<comment>jira</comment>] ');
 			$db_name = $io->ask("<info>What is the DB Name?</info>[<comment>$project_name</comment>] ", $project_name);
 			$db_user = $io->ask('<info>What is the DB User?</info>[<comment>root</comment>] ', 'root');
 			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
@@ -94,7 +94,7 @@ class Installer {
 		}
 	}
 
-	public static function builder(Event $event) {
+	public static function buildProject(Event $event) {
 		$root = dirname(dirname(__DIR__));
 		$composer = $event->getComposer();
 		$io = $event->getIO();
@@ -106,7 +106,8 @@ class Installer {
 		shell_exec("wp db create");
 
 		$io->write("<info>Setting up theme</info>");
-		shell_exec("wp theme activate mmc");
+		$theme =$io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>");
+		shell_exec("wp theme activate " . $theme);
 
 		$io->write("<info>Removing default stuff</info>");
 		shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
