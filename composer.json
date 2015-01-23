@@ -42,7 +42,7 @@
   },
   "scripts": {
     "post-root-package-install": ["Bedrock\\Installer::setupEnvironment"],
-    "post-dependencies-solving": ["Bedrock\\Installer::buildProject"]
+    "post-dependencies-solving": ["Bedrock\\Builder::buildProject"]
   },
   "repositories": [
     {
