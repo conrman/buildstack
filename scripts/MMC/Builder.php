@@ -21,8 +21,7 @@ class Builder {
 		$io->write("<info>Installing Wordpress Core</info>");
 		// Get Site URL and Title
 		$site_url = $io->ask("<info>What is the Site URL?</info>[<comment>project-name.dev</comment>]");
-		$site_title = $io->ask("<info>What is the Site Title?</info>");
-		shell_exec("wp core install --url=$site_url --title=$site_title --admin_user=wpadmin --admin_password=happy2012 --admin_email=webadmin@mailmmc.com");
+		shell_exec("wp core install --url=$site_url --title=NewProject --admin_user=wpadmin --admin_password=happy2012 --admin_email=webadmin@mailmmc.com");
 
 		$io->write("<info>Setting up theme</info>");
 		$theme = $io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>", "material");
