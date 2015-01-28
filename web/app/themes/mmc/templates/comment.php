@@ -1,9 +1,9 @@
 <div class="comment">
-	<div class="row bp2">
-		<div class="span-1">
+	<div class="row">
+		<div class="col s12 m2 l3">
 			<?php echo get_avatar($comment, $size = '64'); ?>
 		</div>
-		<div class="comment-body span-9">
+		<div class="comment-body col s12 m10 l9">
 			<h4 class="comment-heading"><?php echo get_comment_author_link(); ?></h4>
 			<time datetime="<?php echo get_comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php printf(__('%1$s', 'roots'), get_comment_date(),  get_comment_time()); ?></a></time>
 			<?php edit_comment_link(__('(Edit)', 'roots'), '', ''); ?>

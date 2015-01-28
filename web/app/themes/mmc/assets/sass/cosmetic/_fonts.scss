@@ -1,35 +1,28 @@
-
-/* Fonts
-================================================================ */
-
-// Declare actual typefaces in base/_variables.scss
-
-/******************************************************************
-Font 1
-******************************************************************/
-
-@import url(//fonts.googleapis.com/css?family=Pacifico|Raleway:400,600,700|Roboto:400);
-
-.font-1 {
-    font-family: $font-1;
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/roboto/Roboto-Thin.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/roboto/Roboto-Light.ttf);
+    font-weight: 300;
 }
 
-/******************************************************************
-Font 2
-******************************************************************/
-
-@import url(//fonts.googleapis.com/css?family=Droid+Sans:400,700);
-
-.font-2 {
-    font-family: $font-2;
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/roboto/Roboto-Regular.ttf);
+    font-weight: 400;
 }
 
-/******************************************************************
-Font 3
-******************************************************************/
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/roboto/Roboto-Medium.ttf);
+    font-weight: 500;
+}
 
-// @import url(http://fonts.googleapis.com/css?family=Economica:400,700,400italic,700italic);
-
-.font-3 {
-	font-family: $font-3;
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/roboto/Roboto-Bold.ttf);
+    font-weight: 700;
 }

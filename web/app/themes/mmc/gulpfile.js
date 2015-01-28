@@ -27,7 +27,7 @@ gulp.task('set-development', function() {
 
 gulp.task('browser-sync', function() {
     browserSync({
-        proxy: "{{site_url}}"
+        proxy: "vicky-andres.dev"
     });
 });
 

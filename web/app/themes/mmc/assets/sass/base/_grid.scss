@@ -1,108 +1,137 @@
+// Grid Variables
+$num-cols: 12;
+$gutter-width: 1.5rem;
 
-/* Grid System
-================================================================ */
+// Media Query Ranges
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$large-screen: 1200px !default;
 
-// Jeet implimentation
+$medium-and-up: "only screen and (min-width : #{$small-screen})";
+$large-and-up: "only screen and (min-width : #{$medium-screen})";
 
-@for $i from 1 through $columns {
-	.span-#{$i} {
-		@include span($i/$columns);
-	}
+$small-and-down: "only screen and (max-width : #{$small-screen})";
+$medium-and-down: "only screen and (max-width : #{$medium-screen})";
 
-	.col-#{$i} {
-		@include col($i/$columns);
-	}
+$medium-only: "only screen and (min-width : #{$small-screen}) and (max-width : #{$medium-screen})";
 
-	@each $name in $bp-names {
-		@media (min-width: bp($name)) {
-			.span-#{$name}-#{$i} {
-				@include span($i/$columns);
-			}
 
-			.col-#{$name}-#{$i} {
-				@include col($i/$columns);
-			}
-		}
-	}
+.container {
+  padding: 0 $gutter-width;
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+@media #{$medium-and-up} {
+  .container {
+    width: 85%;
+  }
+}
+@media #{$large-and-up} {
+  .container {
+    width: 70%;
+  }
+}
+.container .row {
+  margin-left: (-1 * $gutter-width / 2);
+  margin-right: (-1 * $gutter-width / 2);
 }
 
-// Default One Nexus grid
-/******************************************************************
-Individual Column
-******************************************************************/
+.section {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 
-// [class*="span"] {
-// 	display: inline-block;
-// 	zoom: 1; *display: inline; /* IE < 8: fake inline-block */
-// 	vertical-align: top;
-// 	margin-left: $gutter;
-// 	&:first-child {
-// 		margin-left: 0;
-// 	}
-// }
+  &.no-pad {
+    padding: 0;
+  }
+  &.no-pad-bot {
+    padding-bottom: 0;
+  }
+  &.no-pad-top {
+    padding-top: 0;
+  }
+}
 
-// /******************************************************************
-// Custom Column Grid
-// ******************************************************************/
 
-// @for $i from 1 through $columns {
-// 	.span-#{$i} {
-// 		width: ( (100/$columns) * $i) - ( ( ((100 / ((100/$columns) * $i)) - 1) * $gutter ) / ( $columns / $i ) )
-// 	}
-// }
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 
-// .row {
+  // Clear floating children
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-// /******************************************************************
-// Default Column Stacking
-// ******************************************************************/
+  .col {
+    @include transition(all .3s);
+    float: left;
+    @include box-sizing(border-box);
+    padding: 0 $gutter-width / 2;
 
-// @media (max-width: $breakpoint-3) {
-// 	&:not([class*="bp"]) {
-// 		> [class*="span"] {
-// 			margin-left: 0;
-// 			width: 100%;
-// 		}
-// 		&.block-columns {
-// 			> [class*="span"] {
-// 				display: inline-block;
-// 			}
-// 		}
-// 	}
-// }
+    $i: 1;
+    @while $i <= $num-cols {
+      $perc: unquote((100 / ($num-cols / $i)) + "%");
+      &.s#{$i} { 
+        width: $perc; 
+        margin-left: 0;
+      }
+      $i: $i + 1;
+    } 
+    $i: 1;
+    @while $i <= $num-cols {
+      $perc: unquote((100 / ($num-cols / $i)) + "%");
+      &.offset-s#{$i} { 
+        margin-left: $perc; 
+      }
+      $i: $i + 1;
+    } 
 
-// /******************************************************************
-// Custom Column Stacking
-// ******************************************************************/
+    @media #{$medium-and-up} {
 
-// @function bp($name) {
-// 	@return nth($bp-values, index($bp-names, $name))
-// }
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+        &.m#{$i} { 
+          width: $perc; 
+          margin-left: 0;
+        }
+        $i: $i + 1;
+      } 
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+        &.offset-m#{$i} { 
+          margin-left: $perc;
+        }
+        $i: $i + 1;
+      } 
 
-// @each $name in $bp-names {
-// 	@media (max-width: bp($name)) {
-// 		&.#{$name} {
-// 			[class*="span"] {
-// 				margin-left: 0;
-// 				width: 100%;
-// 			}
-// 			&.block-columns {
-// 				> [class*="span"] {
-// 					display: inline-block;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+    }
 
-// /******************************************************************
-// Block Columns
-// ******************************************************************/
+    @media #{$large-and-up} {
 
-// &.block-columns {
-// 	> [class*="span"] {
-// 		display: table-cell;
-// 	}
-// }
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+        &.l#{$i} { 
+          width: $perc; 
+          margin-left: 0;
+        }
+        $i: $i + 1;
+      } 
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+        &.offset-l#{$i} { 
+          margin-left: $perc;
+        }
+        $i: $i + 1;
+      } 
 
-// } // End .row
+    }
+
+  }
+}

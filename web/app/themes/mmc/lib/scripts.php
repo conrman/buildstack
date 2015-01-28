@@ -24,7 +24,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.min.css',
       'js'        => '/assets/scripts/main.min.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
-      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
+      'jquery'    => '/assets/vendor/jquery/dist/jquery.js'
       );
   } else {
     $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');

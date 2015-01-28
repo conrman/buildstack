@@ -14,9 +14,7 @@
   ],
   "dependencies": {
     "modernizr": "2.8.2",
-    "jquery": "1.11.1",
     "respond": "1.4.2",
-    "fontawesome": "~4.1.0",
-    "jeet": "~6.1.2"
+    "fontawesome": "~4.1.0"
   }
 }

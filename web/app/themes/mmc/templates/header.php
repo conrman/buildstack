@@ -1,9 +1,13 @@
-<header class="app-header" id="app-header">
-	<div class="header-wrapper">
-		<?php get_template_part('templates/modules/logo'); ?>
-		<?php get_template_part('templates/modules/navigation', 'header'); ?>
+<!-- Header -->
+<header>
+	<div class="container">
+		<nav class="nav-wrapper">
+			
+			<?php get_template_part('modules/logo'); ?>
+			<?php get_template_part('modules/navigation', 'header'); ?>
 
-		<!-- Mobile Menu Trigger Button -->
-		<a class="nav-trigger max-bp3" href="#"><span class="navicon">menu</span></a>
+			<!-- Navigation Toggle -->
+			<a id="sidenav-toggle" class="button-collapse" data-activates="nav-mobile" href="#"><i class="mdi-navigation-menu"></i></a>
+		</nav>
 	</div>
 </header>

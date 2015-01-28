@@ -34,22 +34,22 @@ function roots_gallery($attr) {
   }
 
   extract(shortcode_atts(array(
-    'order'      => 'ASC',
-    'orderby'    => 'menu_order ID',
-    'id'         => $post->ID,
-    'itemtag'    => '',
-    'icontag'    => '',
-    'captiontag' => '',
-    'columns'    => 4,
-    'size'       => 'thumbnail',
-    'include'    => '',
-    'exclude'    => '',
-    'link'       => ''
-  ), $attr));
+          'order'      => 'ASC',
+          'orderby'    => 'menu_order ID',
+          'id'         => $post->ID,
+          'itemtag'    => '',
+          'icontag'    => '',
+          'captiontag' => '',
+          'columns'    => 4,
+          'size'       => 'thumbnail',
+          'include'    => '',
+          'exclude'    => '',
+          'link'       => ''
+          ), $attr));
 
   $id = intval($id);
   $columns = (12 % $columns == 0) ? $columns: 4;
-  $grid = sprintf('col-sm-%1$s col-lg-%1$s', 12/$columns);
+  $grid = sprintf('col s%1$s col l%1$s', 12/$columns);
 
   if ($order === 'RAND') {
     $orderby = 'none';
@@ -87,14 +87,14 @@ function roots_gallery($attr) {
   foreach ($attachments as $id => $attachment) {
     switch($link) {
       case 'file':
-        $image = wp_get_attachment_link($id, $size, false, false);
-        break;
+      $image = wp_get_attachment_link($id, $size, false, false);
+      break;
       case 'none':
-        $image = wp_get_attachment_image($id, $size, false, array('class' => 'thumbnail img-thumbnail'));
-        break;
+      $image = wp_get_attachment_image($id, $size, false, array('class' => 'thumbnail'));
+      break;
       default:
-        $image = wp_get_attachment_link($id, $size, true, false);
-        break;
+      $image = wp_get_attachment_link($id, $size, true, false);
+      break;
     }
     $output .= ($i % $columns == 0) ? '<div class="row gallery-row">': '';
     $output .= '<div class="' . $grid .'">' . $image;

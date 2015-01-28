@@ -1,69 +1,47 @@
-/******************************************************************
+/***
+*   Matierial Design Theme
+*
+*    Based on MaterializeCSS
+*/
 
-Site Name: MMC 
-Author: Connor Freeman
+@charset "UTF-8";
 
-One Nexus Framework by Edmund Reed of bluenexusmedia.com
-http://onenexusproject.com - http://edmundreed.co.uk
-
-******************************************************************/
-
-/******************************************************************
-Base
-******************************************************************/
+// Base
+@import "base/prefixer";
 @import "base/normalize";
-@import "base/variables";
-@import "../vendor/fontawesome/scss/font-awesome";
-@import "../vendor/jeet/scss/jeet/index";
-@import "base/base";
-@import "base/grid";
 @import "base/mixins";
-@import "base/helpers";
-@import "base/print";
-@import "base/sprite";
+@import "base/grid";
+@import "base/global";
 
-/******************************************************************
-Cosmetic
-******************************************************************/
-@import "cosmetic/accordions";
-@import "cosmetic/alert-boxes";
-@import "cosmetic/article";
-@import "cosmetic/blockquotes";
-@import "cosmetic/breadcrumb";
-@import "cosmetic/buttons";
-@import "cosmetic/carousels";
-@import "cosmetic/comments";
-@import "cosmetic/fancybox";
+// Cosmetic
+@import "cosmetic/colors";
 @import "cosmetic/fonts";
-@import "cosmetic/footer";
-@import "cosmetic/forms";
-@import "cosmetic/header";
-@import "cosmetic/headings";
 @import "cosmetic/icons";
-@import "cosmetic/images";
-@import "cosmetic/jumbotron";
-@import "cosmetic/links";
-@import "cosmetic/lists";
-@import "cosmetic/logo";
-@import "cosmetic/main-nav";
-@import "cosmetic/map";
-@import "cosmetic/modals";
-@import "cosmetic/nav-trigger";
-@import "cosmetic/off-canvas-nav";
-@import "cosmetic/pointer-box";
-@import "cosmetic/scroll-top";
-@import "cosmetic/sidebar";
-@import "cosmetic/tables";
+@import "cosmetic/typography";
+@import "cosmetic/buttons";
+@import "cosmetic/header";
+@import "cosmetic/navbar";
+@import "cosmetic/footer";
+@import "cosmetic/side-nav";
+@import "cosmetic/cards";
+@import "cosmetic/toast";
 @import "cosmetic/tabs";
-@import "cosmetic/tooltips";
+@import "cosmetic/tooltip";
+@import "cosmetic/dropdown";
+@import "cosmetic/collection";
+@import "cosmetic/badge";
+@import "cosmetic/modal";
+@import "cosmetic/collapsible";
+@import "cosmetic/materialbox";
+@import "cosmetic/waves";
+@import "cosmetic/form";
+@import "cosmetic/parallax";
+@import "cosmetic/preloader";
+@import "cosmetic/slider";
+@import "cosmetic/article";
+@import "cosmetic/date_picker/default.scss";
+@import "cosmetic/date_picker/default.date.scss";
+@import "cosmetic/date_picker/default.time.scss";
 
-/******************************************************************
-Project
-******************************************************************/
-@import "project/home";
-@import "project/amenities";
-@import "project/floorplans";
-@import "project/gallery";
-@import "project/location";
-@import "project/contact";
-@import "project/residents";
+// Project
+@import "project/works";

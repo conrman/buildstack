@@ -272,24 +272,6 @@ function global_initialize_theme_options() {
 		array()
 	);
 
-	add_settings_field(
-		'lease_online',
-		__( 'Lease Online', 'global' ),
-		'global_lease_online_callback',
-		'global_settings_display_options',
-		'general_settings_section',
-		array()
-	);
-
-	add_settings_field(
-		'residents_link',
-		__( 'Resident Link', 'global' ),
-		'global_residents_link_callback',
-		'global_settings_display_options',
-		'general_settings_section',
-		array()
-	);
-
 
 	// Finally, we register the fields with WordPress
 	register_setting(
@@ -508,34 +490,6 @@ function global_email_callback($args) {
 	echo '<input type="text" id="email" name="global_settings_display_options[email]" value="' . $value . '" />';
 
 } // end global_email_callback
-
-function global_lease_online_callback($args) {
-
-	$options = get_option( 'global_settings_display_options' );
-
-	$value = '';
-	if( isset( $options['lease_online'] ) ) {
-		$value = $options['lease_online'];
-	} // end if
-
-	// Render the output
-	echo '<input type="text" id="lease_online" name="global_settings_display_options[lease_online]" value="' . $value . '" />';
-
-} // end global_lease_online_callback
-
-function global_residents_link_callback($args) {
-
-	$options = get_option( 'global_settings_display_options' );
-
-	$value = '';
-	if( isset( $options['residents_link'] ) ) {
-		$value = $options['residents_link'];
-	} // end if
-
-	// Render the output
-	echo '<input type="text" id="residents_link" name="global_settings_display_options[residents_link]" value="' . $value . '" />';
-
-} // end global_residents_link_callback
 
 function global_twitter_callback() {
 

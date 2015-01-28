@@ -5,8 +5,8 @@
 add_theme_support('soil-clean-up');         // Enable clean up from Soil
 add_theme_support('soil-relative-urls');    // Enable relative URLs from Soil
 add_theme_support('soil-nice-search');      // Enable /?s= to /search/ redirect from Soil
-add_theme_support('bootstrap-gallery');     // Enable Bootstrap's thumbnails component on [gallery]
-add_theme_support('jquery-cdn');            // Enable to load jQuery from the Google CDN
+// add_theme_support('bootstrap-gallery');     // Enable Bootstrap's thumbnails component on [gallery]
+// add_theme_support('jquery-cdn');            // Enable to load jQuery from the Google CDN
 
 /**
  * Configuration values
@@ -19,10 +19,10 @@ define('GOOGLE_ANALYTICS_ID', getenv('GOOGLE_ANALYTICS_ID'));
 function roots_main_class() {
 	if (roots_display_sidebar()) {
 		// Classes on pages with the sidebar
-		$class = 'span-8';
+		$class = 'col s12 m9 l10';
 	} else {
 		// Classes on full width pages
-		$class = 'span-12';
+		$class = 'col s12 m12 l12';
 	}
 
 	return apply_filters('roots/main_class', $class);
@@ -32,7 +32,7 @@ function roots_main_class() {
  * .sidebar classes
  */
 function roots_sidebar_class() {
-	return apply_filters('roots/sidebar_class', 'span-4');
+	return apply_filters('roots/sidebar_class', 'col s12 m3 l2');
 }
 
 /**
@@ -53,16 +53,16 @@ function roots_display_sidebar() {
 	 * The second element must be an array even if there's only 1 argument.
 	 */
 	array(
-		'is_404',
-		'is_front_page',
-		'is_page'
-		),
+	      'is_404',
+	      'is_single',
+	      array('is_page', array(12))
+	      ),
 	/**
 	 * Page template checks (via is_page_template())
 	 * Any of these page templates that return true won't show the sidebar
 	 */
 	array(
-		)
+	      )
 	);
 
 	return apply_filters('roots/display_sidebar', $sidebar_config->display);

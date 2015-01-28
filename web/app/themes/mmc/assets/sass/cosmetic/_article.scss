@@ -1,10 +1,6 @@
-
-/* Article
-======================================================================= */
-
 article {
 
-	margin: 1em;
-	padding: 1em 0.25em;
-
-} // End article
+	img {
+		@extend .responsive;
+	}
+}

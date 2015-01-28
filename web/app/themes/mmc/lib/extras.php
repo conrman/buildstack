@@ -16,11 +16,11 @@ function the_breadcrumb() {
 		echo get_option('home');
 		echo '">';
 		bloginfo('name');
-		echo "</a> <i class='fa fa-chevron-right'></i> ";
+		echo "</a> <i class='mdi-hardware-keyboard-arrow-right'></i> ";
 		if (is_category() || is_single()) {
 			the_category('title_li=');
 			if (is_single()) {
-				echo " <i class='fa fa-chevron-right'></i> ";
+				echo " <i class='mdi-hardware-keyboard-arrow-right'></i> ";
 				the_title();
 			}
 		} elseif (is_page()) {
@@ -38,13 +38,13 @@ function add_classes($classes, $item, $args) {
 
 function nav_depth_classes($item_output, $item, $depth, $args) {
 	add_action(
-		'nav_menu_css_class',
-		function() use ($depth) {
-			$depth++;
-			$classes[] = "depth-{$depth}";
-			return $classes;
-		}
-		);
+	           'nav_menu_css_class',
+	           function() use ($depth) {
+	           	$depth++;
+	           	$classes[] = "depth-{$depth}";
+	           	return $classes;
+	           }
+	           );
 	return $item_output;
 }
 // add_filter('walker_nav_menu_start_el','nav_depth_classes',1,4);
@@ -62,276 +62,80 @@ function roots_wp_title($title) {
 add_filter('wp_title', 'roots_wp_title', 10);
 
 /**
- *  Custon Post Type - Location
+ *  Projects Custom Post Type
  */
-add_action('init', 'cptui_register_my_cpt_location');
-function cptui_register_my_cpt_location() {
-	register_post_type('location', array(
-		'label' => 'Locations',
-		'description' => '',
-		'public' => false,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'capability_type' => 'post',
-		'map_meta_cap' => true,
-		'hierarchical' => false,
-		'rewrite' => array('slug' => 'location', 'with_front' => true),
-		'query_var' => true,
-		'supports' => array('title','editor','excerpt','trackbacks','custom-fields','comments','revisions','thumbnail','author','page-attributes','post-formats'),
-		'labels' => array (
-			'name' => 'Locations',
-			'singular_name' => 'Location',
-			'menu_name' => 'Locations',
-			'add_new' => 'Add Location',
-			'add_new_item' => 'Add New Location',
-			'edit' => 'Edit',
-			'edit_item' => 'Edit Location',
-			'new_item' => 'New Location',
-			'view' => 'View Location',
-			'view_item' => 'View Location',
-			'search_items' => 'Search Locations',
-			'not_found' => 'No Locations Found',
-			'not_found_in_trash' => 'No Locations Found in Trash',
-			'parent' => 'Parent Location',
-			)
-		) ); }
-
-/**
- * Custom Post Type - Floorplan
- */
-add_action('init', 'cptui_register_my_cpt_floorplan');
-	function cptui_register_my_cpt_floorplan() {
-		register_post_type('floorplan', array(
-			'label' => 'Floorplans',
-			'description' => '',
-			'public' => false,
-			'show_ui' => true,
-			'show_in_menu' => true,
-			'capability_type' => 'post',
-			'map_meta_cap' => true,
-			'hierarchical' => false,
-			'rewrite' => array('slug' => 'floorplans', 'with_front' => true),
-			'query_var' => true,
-			'supports' => array('title','editor','excerpt','trackbacks','custom-fields','comments','revisions','thumbnail','author','page-attributes','post-formats'),
-			'labels' => array (
-				'name' => 'Floorplans',
-				'singular_name' => 'Floor plan',
-				'menu_name' => 'Floor Plans',
-				'add_new' => 'Add Floorplan',
-				'add_new_item' => 'Add New Floorplan',
-				'edit' => 'Edit',
-				'edit_item' => 'Edit Floorplan',
-				'new_item' => 'New Floorplan',
-				'view' => 'View Floorplan',
-				'view_item' => 'View Floorplan',
-				'search_items' => 'Search Floorplans',
-				'not_found' => 'No Floorplans Found',
-				'not_found_in_trash' => 'No Floorplans Found in Trash',
-				'parent' => 'Parent Floorplan',
-				)
-			) ); }
-
-/**
- * Custom Fields
- */
-if(function_exists("register_field_group")) {
-  /* Floor Plans */
-	register_field_group(array (
-		'id' => 'acf_floorplans',
-		'title' => 'Floorplans',
-		'fields' => array (
-			array (
-				'key' => 'field_5419c015b4440',
-				'label' => 'Bedrooms',
-				'name' => 'bedrooms',
-				'type' => 'text',
-				'required' => 1,
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
-				),
-			array (
-				'key' => 'field_5419c01cb4441',
-				'label' => 'Bathrooms',
-				'name' => 'bathrooms',
-				'type' => 'text',
-				'required' => 1,
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
-				),
-			array (
-				'key' => 'field_5419c023b4442',
-				'label' => 'Square Feet',
-				'name' => 'square_feet',
-				'type' => 'text',
-				'required' => 1,
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
-				),
-			array (
-				'key' => 'field_5419c02ab4443',
-				'label' => 'Price',
-				'name' => 'price',
-				'type' => 'text',
-				'required' => 1,
-				),
-			array (
-				'key' => 'field_5419c032b4444',
-				'label' => 'Download',
-				'name' => 'download',
-				'type' => 'file',
-				'save_format' => 'object',
-				'library' => 'all',
-				),
-			),
-'location' => array (
-	array (
-		array (
-			'param' => 'post_type',
-			'operator' => '==',
-			'value' => 'floorplan',
-			'order_no' => 0,
-			'group_no' => 0,
-			),
-		),
-	),
-'options' => array (
-	'position' => 'normal',
-	'layout' => 'no_box',
-	'hide_on_screen' => array (
-		0 => 'the_content',
-		1 => 'excerpt',
-		2 => 'custom_fields',
-		3 => 'discussion',
-		4 => 'comments',
-		5 => 'revisions',
-		6 => 'slug',
-		7 => 'author',
-		8 => 'format',
-		9 => 'categories',
-		10 => 'tags',
-		11 => 'send-trackbacks',
-		),
-	),
-'menu_order' => 0,
-));
-
-/* Locations */
-register_field_group(array (
-	'id' => 'acf_locations',
-	'title' => 'Locations',
-	'fields' => array (
-		array (
-			'key' => 'field_5422f59176380',
-			'label' => 'Address',
-			'name' => 'address',
-			'type' => 'text',
-			'required' => 1,
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'formatting' => 'html',
-			'maxlength' => '',
-			),
-		array (
-			'key' => 'field_5422f59876381',
-			'label' => 'Website',
-			'name' => 'website',
-			'type' => 'text',
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'formatting' => 'html',
-			'maxlength' => '',
-			),
-		array (
-			'key' => 'field_5422f8e03ce4a',
-			'label' => 'Category',
-			'name' => 'category',
-			'type' => 'select',
-			'required' => 1,
-			'choices' => array (
-				'food' => 'Food',
-				'coffee' => 'Coffee',
-				'shopping' => 'Shopping',
-				'fun' => 'Fun',
-				'school' => 'School',
-				),
-			'default_value' => '',
-			'allow_null' => 0,
-			'multiple' => 0,
-			),
-		array (
-			'key' => 'field_5422f5a376382',
-			'label' => 'Latitude',
-			'name' => 'latitude',
-			'type' => 'text',
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'formatting' => 'html',
-			'maxlength' => '',
-			),
-		array (
-			'key' => 'field_5422f5a776383',
-			'label' => 'Longitude',
-			'name' => 'longitude',
-			'type' => 'text',
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'formatting' => 'html',
-			'maxlength' => '',
-			),
-		),
-'location' => array (
-	array (
-		array (
-			'param' => 'post_type',
-			'operator' => '==',
-			'value' => 'location',
-			'order_no' => 0,
-			'group_no' => 0,
-			),
-		),
-	),
-'options' => array (
-	'position' => 'normal',
-	'layout' => 'no_box',
-	'hide_on_screen' => array (
-		0 => 'permalink',
-		1 => 'the_content',
-		2 => 'excerpt',
-		3 => 'custom_fields',
-		4 => 'discussion',
-		5 => 'comments',
-		6 => 'revisions',
-		7 => 'slug',
-		8 => 'author',
-		9 => 'format',
-		10 => 'featured_image',
-		11 => 'categories',
-		12 => 'tags',
-		13 => 'send-trackbacks',
-		),
-	),
-'menu_order' => 0,
-));
+function my_custom_post_project() {
+	$labels = array(
+	                'name'               => _x( 'Projects', 'post type general name' ),
+	                'singular_name'      => _x( 'Project', 'post type singular name' ),
+	                'add_new'            => _x( 'Add New', 'project' ),
+	                'add_new_item'       => __( 'Add New Project' ),
+	                'edit_item'          => __( 'Edit Project' ),
+	                'new_item'           => __( 'New Project' ),
+	                'all_items'          => __( 'All Projects' ),
+	                'view_item'          => __( 'View Project' ),
+	                'search_items'       => __( 'Search Projects' ),
+	                'not_found'          => __( 'No projects found' ),
+	                'not_found_in_trash' => __( 'No projects found in the Trash' ), 
+	                'parent_item_colon'  => '',
+	                'menu_name'          => 'Projects'
+	                );
+	$args = array(
+	              'labels'        	=> $labels,
+	              'description'   	=> 'Holds our project and project specific data',
+	              'public'        	=> true,
+	              'menu_position' => 5,
+	              'show_in_nav_menus' => true,
+	              'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt'),
+	              'has_archive'   => true,
+	              );
+	register_post_type( 'project', $args ); 
 }
+add_action( 'init', 'my_custom_post_project' );
 
+/***
+ *  Project Messages
+ */
+function my_updated_messages( $messages ) {
+	global $post, $post_ID;
+	$messages['product'] = array(
+	                             0 => '', 
+	                             1 => sprintf( __('Project updated. <a href="%s">View project</a>'), esc_url( get_permalink($post_ID) ) ),
+	                             2 => __('Custom field updated.'),
+	                             3 => __('Custom field deleted.'),
+	                             4 => __('Project updated.'),
+	                             5 => isset($_GET['revision']) ? sprintf( __('Project restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	                             6 => sprintf( __('Project published. <a href="%s">View project</a>'), esc_url( get_permalink($post_ID) ) ),
+	                             7 => __('Project saved.'),
+	                             8 => sprintf( __('Project submitted. <a target="_blank" href="%s">Preview project</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+	                             9 => sprintf( __('Project scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview project</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
+	                             10 => sprintf( __('Project draft updated. <a target="_blank" href="%s">Preview project</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+	                             );
+return $messages;
+}
+add_filter( 'post_updated_messages', 'my_updated_messages' );
 
+/***
+ *  Project Taxonomies
+ */
+function my_taxonomies_project() {
+	$labels = array(
+	                'name'              => _x( 'Project Categories', 'taxonomy general name' ),
+	                'singular_name'     => _x( 'Project Category', 'taxonomy singular name' ),
+	                'search_items'      => __( 'Search Project Categories' ),
+	                'all_items'         => __( 'All Project Categories' ),
+	                'parent_item'       => __( 'Parent Project Category' ),
+	                'parent_item_colon' => __( 'Parent Project Category:' ),
+	                'edit_item'         => __( 'Edit Project Category' ), 
+	                'update_item'       => __( 'Update Project Category' ),
+	                'add_new_item'      => __( 'Add New Project Category' ),
+	                'new_item_name'     => __( 'New Project Category' ),
+	                'menu_name'         => __( 'Project Categories' ),
+	                );
+	$args = array(
+	              'labels' => $labels,
+	              'hierarchical' => true,
+	              );
+	register_taxonomy( 'projects', 'project', $args );
+}
+add_action( 'init', 'my_taxonomies_project', 0 );

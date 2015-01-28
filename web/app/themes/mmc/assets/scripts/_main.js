@@ -26,159 +26,31 @@ var Roots = {
 			// svg fallbacks
 			svgeezy.init(false, 'png');
 
-			// load to avoid FOUC
-			$('body').addClass('loaded');
+			$('#sidenav-toggle').sideNav();
+			$('.collapsible').collapsible();
 
-			Roots.common.offCanvasNav();
-			Roots.common.scrollToTop();
-			Roots.common.fancybox();
-			Roots.common.smoothScroll();
-			// Roots.common.modal();
-
-
-		},
-		/******************************************************************
-		Off-Canvas/Mobile Menu
-		******************************************************************/
-		offCanvasNav: function() {
-			$("#app-header .main-nav > ul").clone().appendTo("#off-canvas-nav");
-		},
-		/******************************************************************
-		Smooth Scroll
-		******************************************************************/
-		smoothScroll: function(e) {
-			$('a[href*=#]').click(function() {
-				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
-					var target = $(this.hash);
-					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-					if (target.length) {
-						$('html,body').animate({
-							scrollTop: target.offset().top
-						}, 1200);
-						return false;
-					}
-				}
+			Roots.common.matchHeight('.project');
+			Roots.common.slider(".slider", {
+				adaptiveHeight: true
 			});
 		},
-		/******************************************************************
-		Scroll to Top
-		******************************************************************/
-		scrollToTop: function() {
-			$(window).bind("scroll", function() {
-				if ($(this).scrollTop() > 350) {
-					$(".scroll-top").addClass('active');
-				} else {
-					$(".scroll-top").stop().removeClass('active');
-				}
-			});
-		},
-		/******************************************************************
-		Modals
-		******************************************************************/
-		modal: function(target, options) {
-			$(target).magnificPopup(options);
-		},
-		/******************************************************************
-		Tooltip
-		******************************************************************/
-		tooltip: function(target, options) {
-			$(target).tipr(options);
-		},
-		/******************************************************************
-		Fancybox
-		******************************************************************/
-		fancybox: function() {
-			$('.fancybox').fancybox();
-		},
-		/******************************************************************
-		Isotope
-		******************************************************************/
 		isotope: function(container, options) {
 			var $container = $(container).imagesLoaded( function() {
 				$container.isotope(options);
 			});
 		},
-		/******************************************************************
-		Slick Slider
-		******************************************************************/
-		slickSlider: function(target, options) {
+		slider: function(target, options) {
 			$(target).slick(options);
 		},
-		/******************************************************************
-		Match Height
-		******************************************************************/
 		matchHeight: function(target) {
 			$(target).matchHeight();
 		}
 	},
 	home: {
 		init: function() {
-			Roots.common.slickSlider("#home-slider", {
-				cssEase: 'ease-in-out',
-				touchMove: false,
-				autoplay: true,
-				autoplaySpeed: 2000,
-				accessibility: false,
-				draggable: false,
-				speed: 2500,
-				arrows: true,
-				centerMode: true,
-				variableWidth: true,
-			});
 		}
 	},
-	amenities: {
-		init: function() {
-			
-		}
-	},
-	floor_plans: {
-		init: function() {
-			Roots.spaces.bedNav();
-			Roots.spaces.unitSelect();
-		},
-		bedNav: function() {
-			$('.bed-select').click(function() {
-				$('.bed-select').removeClass('active');
-				$(this).addClass('active');
-
-				var beds = $(this).data('beds');
-				$('.floorplan-excerpt.active').removeClass('active');
-				$('.floorplan-excerpt[data-beds="' + beds + '"]').addClass('active');
-			});
-		},
-		unitSelect: function() {
-			$('.floorplan-excerpt').click(function() {
-				var floorplan = $(this).data('floorplan');
-				var $floorplan = $('.floorplan-unit[data-floorplan="' + floorplan + '"]');
-				if ($floorplan.hasClass('selected')) {
-					$(this).parent().next().remove();
-					$floorplan.removeClass('selected');
-				} else {
-					$(this).parent().next().remove();
-					$('.floorplan-unit').removeClass('selected');
-					$floorplan.clone().insertAfter($(this).parent()).addClass('selected');
-				}
-			});
-		}
-	},
-	gallery: { 
-		init: function() {
-		}
-	},
-	location: {
-		init: function() {
-			$('.map-nav-link').click(function() {
-				$('.map-nav-link').removeClass('active');
-				$(this).addClass('active');
-			});
-		}
-	},
-	contact: {
-		init: function() {
-		}
-	},
-	residents: {
+	works: {
 		init: function() {
 		}
 	}

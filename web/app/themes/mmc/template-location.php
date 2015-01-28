@@ -1,8 +1,17 @@
 <?php
-/*
-* Template Name: Location Page Template
-*/
+/* * *
+ *  Template Name: Location Page Template
+ */
 
-get_template_part('templates/modules/jumbotron');
-get_template_part('templates/pages/location');
+global $display_options; 
 ?>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="content">
+				<?php the_content(); ?>
+			</div>
+		</div>
+	</div>
+</div>

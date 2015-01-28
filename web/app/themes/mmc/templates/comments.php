@@ -4,7 +4,7 @@ if (post_password_required()) {
 }
 ?>
 
-<div class="span-8">
+<div class="col s12">
 	<section id="comments">
 		<?php if (have_comments()) : ?>
 			<h3><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'roots'), number_format_i18n(get_comments_number()), get_the_title()); ?></h3>
@@ -53,24 +53,24 @@ if (post_password_required()) {
 								<a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e('Log out of this account', 'roots'); ?>"><?php _e('Log out &raquo;', 'roots'); ?></a>
 							</p>
 						<?php else : ?>
-							<div class="form-group">
+							<div class="input-field">
 								<label for="author"><?php _e('Name', 'roots'); if ($req) _e(' (required)', 'roots'); ?></label>
 								<input type="text" class="box" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" size="22" <?php if ($req) echo 'aria-required="true"'; ?>>
 							</div>
-							<div class="form-group">
+							<div class="input-field">
 								<label for="email"><?php _e('Email (will not be published)', 'roots'); if ($req) _e(' (required)', 'roots'); ?></label>
 								<input type="email" class="box" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" size="22" <?php if ($req) echo 'aria-required="true"'; ?>>
 							</div>
-							<div class="form-group">
+							<div class="input-field">
 								<label for="url"><?php _e('Website', 'roots'); ?></label>
 								<input type="url" class="box" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" size="22">
 							</div>
 						<?php endif; ?>
-						<div class="form-group">
+						<div class="input-field">
 							<label for="comment"><?php _e('Comment', 'roots'); ?></label>
 							<textarea name="comment" id="comment" class="box" rows="5" aria-required="true"></textarea>
 						</div>
-						<p><input name="submit" class="btn btn-primary" type="submit" id="submit" value="<?php _e('Submit Comment', 'roots'); ?>"></p>
+						<p><input name="submit" class="btn btn-submit" type="submit" id="submit" value="<?php _e('Submit Comment', 'roots'); ?>"></p>
 						<?php comment_id_fields(); ?>
 						<?php do_action('comment_form', $post->ID); ?>
 					</form>

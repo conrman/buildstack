@@ -24,8 +24,7 @@ class Builder {
 		shell_exec("wp core install --url=$site_url --title=NewProject --admin_user=wpadmin --admin_password=happy2012 --admin_email=webadmin@mailmmc.com");
 
 		$io->write("<info>Setting up theme</info>");
-		$theme = $io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>", "material");
-		shell_exec("wp theme activate " . $theme);
+		shell_exec("wp theme activate mmc");
 
 		$io->write("<info>Removing Default WP Stuff</info>");
 		shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
@@ -41,8 +40,9 @@ class Builder {
 		shell_exec("wp post create --post_type=page --post_title='Gallery'");
 		shell_exec("wp post create --post_type=page --post_title='Contact'");
 
-		$io->write("<info>Setup Default Navigation</info>");
-		shell_exec("wp ");
+		// Write script to get post id's and create menu
+		// $io->write("<info>Setup Default Navigation</info>");
+		// shell_exec("wp menu item add-post");
 
 	}
 

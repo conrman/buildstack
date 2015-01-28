@@ -1,9 +1,17 @@
 <?php
-/*
-* Template Name: Home Page Template
-*/
+/* * *
+ *  Template Name: Home Page Template
+ */
 
-get_template_part('templates/modules/jumbotron');
-get_template_part('templates/modules/slider');
-get_template_part('templates/pages/home');
+global $display_options; 
 ?>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="content">
+				<?php the_content(); ?>
+			</div>
+		</div>
+	</div>
+</div>
