@@ -18,15 +18,32 @@ class Builder {
 		$io->write("<info>Creating Database</info>");
 		shell_exec("wp db create");
 
+		$io->write("<info>Installing Wordpress Core</info>");
+		$site_url = $io->ask("<info>What is the Site URL?</info>[<comment>project-name.dev</comment>]",);
+		$site_title = $io->ask("<info>What is the Site Title?</info>");
+		shell_exec("wp core install --url=$site_url --title=$site_title --admin_user=wpadmin --admin_password=happy2012 --admin_email=webadmin@mailmmc.com");
+
 		$io->write("<info>Setting up theme</info>");
 		$theme = $io->ask("<info>Which theme would you like to use?[<comment>material, mmc</comment>]</info>", "material");
 		shell_exec("wp theme activate " . $theme);
 
-		$io->write("<info>Removing default stuff</info>");
+		$io->write("<info>Removing Default WP Stuff</info>");
 		shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 
-		$io->write("<info>Setting up wpadmin user</info>");
-		shell_exec("wp user create wpadmin wpadmin@mailmmc.com --role=administrator --user_pass=happy2012");
+		$io->write("<info>Activating Plugins</info>");
+		shell_exec("wp plugin active --all && wp plugin update --all");
+
+		$io->write("<info>Setup Default Pages</info>");
+		shell_exec("wp post create --post_type=page --post_title='Home'");
+		shell_exec("wp post create --post_type=page --post_title='Amenities'");
+		shell_exec("wp post create --post_type=page --post_title='Floor Plans'");
+		shell_exec("wp post create --post_type=page --post_title='Location'");
+		shell_exec("wp post create --post_type=page --post_title='Gallery'");
+		shell_exec("wp post create --post_type=page --post_title='Contact'");
+
+		$io->write("<info>Setup Default Navigation</info>");
+		shell_exec("wp ");
+
 	}
 
 }
