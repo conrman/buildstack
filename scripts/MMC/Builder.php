@@ -19,6 +19,7 @@ class Builder {
 		shell_exec("wp db create");
 
 		$io->write("<info>Installing Wordpress Core</info>");
+		// Get Site URL and Title
 		$site_url = $io->ask("<info>What is the Site URL?</info>[<comment>project-name.dev</comment>]");
 		$site_title = $io->ask("<info>What is the Site Title?</info>");
 		shell_exec("wp core install --url=$site_url --title=$site_title --admin_user=wpadmin --admin_password=happy2012 --admin_email=webadmin@mailmmc.com");
