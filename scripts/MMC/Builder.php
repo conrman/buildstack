@@ -28,6 +28,7 @@ class Builder {
 		shell_exec("wp theme activate $theme");
 
 		// Run NPM
+		$project_acronym = $io->ask('<info>What is the acronym of the project? [<comment>JIRA project acroynm</comment>] ');
 		$run_npm = $io->ask("<info>Would you like to run npm install?</info>[<comment>Y, n</comment>]", true);
 
 		if ($run_npm) {

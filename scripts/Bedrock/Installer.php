@@ -28,8 +28,7 @@ class Installer {
 		} else {
 			$generate_salts = $io->askConfirmation('<info>Generate salts and append to .env file?</info> [<comment>Y,n</comment>]? ', true);
 			$project_name = $io->ask('<info>What is the name of the project? [<comment>project-name</comment>.dev] ');
-			$project_acronym = $io->ask('<info>What is the acronym of the project? [<comment>JIRA project acroynm</comment>] ');
-			$db_name = $io->ask("<info>What is the DB Name?</info>[<comment>$project_name</comment>] ", $project_name);
+			$db_name = $project_name;
 			$env = 'development';
 			$db_user = 'root';
 			$db_pass = '';
