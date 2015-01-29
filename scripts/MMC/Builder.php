@@ -51,7 +51,7 @@ class Builder {
 		shell_exec("wp post delete $(wp post list --post_type='post' --format=ids)");
 
 		$io->write("<info>Activating Plugins</info>");
-		shell_exec("wp plugin active --all && wp plugin update --all");
+		shell_exec("wp plugin activate --all && wp plugin update --all");
 
 		$io->write("<info>Setup Default Pages</info>");
 		shell_exec("wp post create --post_type=page --post_title='Home'");
