@@ -27,7 +27,7 @@ gulp.task('set-development', function() {
 
 gulp.task('browser-sync', function() {
     browserSync({
-        proxy: "vicky-andres.dev"
+        proxy: "{{site_url}}"
     });
 });
 
@@ -103,7 +103,6 @@ gulp.task('sprites', function () {
 	}))
 	.pipe(gulpif('*.png', gulp.dest('assets/images/')))
 	.pipe(gulpif('*.scss', gulp.dest('assets/sass/base')));
-	// .pipe(gulpif(config.development == true, $.livereload()));
 });
 
 gulp.task('watch', function(){

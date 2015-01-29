@@ -19,7 +19,7 @@ define('GOOGLE_ANALYTICS_ID', getenv('GOOGLE_ANALYTICS_ID'));
 function roots_main_class() {
 	if (roots_display_sidebar()) {
 		// Classes on pages with the sidebar
-		$class = 'col s12 m9 l10';
+		$class = 'col s12 m8 l9';
 	} else {
 		// Classes on full width pages
 		$class = 'col s12 m12 l12';
@@ -32,7 +32,7 @@ function roots_main_class() {
  * .sidebar classes
  */
 function roots_sidebar_class() {
-	return apply_filters('roots/sidebar_class', 'col s12 m3 l2');
+	return apply_filters('roots/sidebar_class', 'col s12 m4 l3');
 }
 
 /**
@@ -55,7 +55,7 @@ function roots_display_sidebar() {
 	array(
 	      'is_404',
 	      'is_single',
-	      array('is_page', array(12))
+	      'is_frontpage'
 	      ),
 	/**
 	 * Page template checks (via is_page_template())

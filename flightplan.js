@@ -17,7 +17,7 @@ plan.briefing({
 		'production': {
 			host: 'hostingbymmc.com',
 			username: '{{project_acronym}}',
-			releases: 'reldeployments',
+			releases: 'deployments',
 			privateKey: process.env.HOME + '/.ssh/id_rsa'
 		}
 	}
@@ -40,7 +40,7 @@ plan.remote('deploy', function(remote) {
 // run commands on localhost
 plan.local('deploy', function(local) {
 	local.log('Run build');
-	local.exec('cd web/app/themes/mmc && bower install && gulp build');
+	local.exec('cd web/app/themes/{{theme}} && bower install && gulp build');
 
 	local.log('Copy files to remote hosts');
 	var filesToCopy = local.exec('find . -not -iname ".*" -and -not -path ".git/" -and -not -path "*/node_modules/*" -and -not -path "*/wp/*" -and -not -path "./vendor/*" -and -not -path "*/sass/*"', {silent: true});

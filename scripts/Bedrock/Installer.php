@@ -73,20 +73,6 @@ class Installer {
 			file_put_contents($root . '/.host', $host);
 			shell_exec('cat .host | sudo tee -a /etc/hosts');
 
-			// Run NPM
-			$npm = shell_exec('npm install && cd web/app/themes/mmc/ && npm install');
-
-			if ($npm) {
-				// Setup Gulp
-				$gulp = file_get_contents($root . '/web/app/themes/mmc/gulpfile.js');
-				$gulp = str_replace('{{site_url}}', $url, $gulp);
-				file_put_contents($root . '/web/app/themes/mmc/gulpfile.js', $gulp);
-
-				// Setup Flightplan
-				$flightplan = file_get_contents($root . '/flightplan.js');
-				$flightplan = str_replace('{{project_acronym}}', $project_acronym, $flightplan);
-				file_put_contents($root . '/flightplan.js', $flightplan);	
-			}
 			
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
