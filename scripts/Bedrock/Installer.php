@@ -59,7 +59,7 @@ class Installer {
 		}
 
 		// Setup vhost
-		$vhost = file_get_contents($root . '/config/files.vhost.example');
+		$vhost = file_get_contents($root . '/config/files/.vhost.example');
 		$vhost = str_replace(
 		                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
 		                     array($url, $project_name, $system_user),
