@@ -28,13 +28,9 @@ class Installer {
 		} else {
 			$generate_salts = $io->askConfirmation('<info>Generate salts and append to .env file?</info> [<comment>Y,n</comment>]? ', true);
 			$project_name = $io->ask('<info>What is the name of the project? [<comment>project-name</comment>.dev] ');
-			$project_acronym = $io->ask('<info>What is the acronym of the project? [<comment>jira</comment>] ');
+			$project_acronym = $io->ask('<info>What is the acronym of the project? [<comment>JIRA project acroynm</comment>] ');
 			$db_name = $io->ask("<info>What is the DB Name?</info>[<comment>$project_name</comment>] ", $project_name);
-			$db_user = $io->ask('<info>What is the DB User?</info>[<comment>root</comment>] ', 'root');
-			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
-			$env = $io->ask('<info>What is the environment?</info> [<comment>development</comment>] ', 'development');
 			$url = $project_name . ".dev";
-			$vhost_path = $io->ask('<info>What is the path of your Apache Vhost file?</info> [<comment>/etc/apache2/extra/httpd-vhosts.conf</comment>] ', '/etc/apache2/extra/httpd-vhosts.conf');
 			$system_user = trim(shell_exec('whoami'));
 		}
 
@@ -44,8 +40,7 @@ class Installer {
 
 		$env_file = "{$root}/.env";
 
-		if (copy("{$root}/.env.example", $env_file)) {
-
+		if (copy("{$root}/config/files/.env.example", $env_file)) {
 			// Setup .env file
 			file_put_contents($env_file, implode($salts, "\n"), FILE_APPEND | LOCK_EX);
 			$file = file_get_contents($env_file);
@@ -55,29 +50,32 @@ class Installer {
 			                    $file
 			                    );
 			file_put_contents($env_file, $file);
-
-			// Setup vhost
-			$vhost = file_get_contents($root . '/.vhost.example');
-			$vhost = str_replace(
-			                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
-			                     array($url, $project_name, $system_user),
-			                     $vhost
-			                     );
-			file_put_contents($root . '/.vhost', $vhost);
-			shell_exec('cat .vhost | sudo tee -a ' . $vhost_path);
-
-			// Setup host
-			$io->write("<info>Setup host file</info>");
-			$host = file_get_contents($root . '/host.txt');
-			$host = str_replace('{{site_url}}', $url, $host);
-			file_put_contents($root . '/.host', $host);
-			shell_exec('cat .host | sudo tee -a /etc/hosts');
-
-			
 		} else {
 			$io->write("<error>An error occured while copying your .env file</error>");
 			return 1;
 		}
+
+		// Setup vhost
+		$vhost = file_get_contents($root . '/config/files.vhost.example');
+		$vhost = str_replace(
+		                     array('{{site_url}}', '{{project_name}}', '{{user}}'),
+		                     array($url, $project_name, $system_user),
+		                     $vhost
+		                     );
+		file_put_contents($root . '/config/files/.vhost', $vhost);
+		shell_exec('cat ' . $root . '/config/files/.vhost | sudo tee -a /etc/apache2/extra/httpd-vhosts.conf');
+		shell_exec('rm ' . $root . '/config/files/.vhost');
+
+		// Setup host
+		$io->write("<info>Setup host file</info>");
+		$host = file_get_contents($root . '/config/files/.host.example');
+		$host = str_replace('{{site_url}}', $url, $host);
+		file_put_contents($root . '/config/files/.host', $host);
+		shell_exec('cat ' . $root . '/config/files/.host | sudo tee -a /etc/hosts');
+		shell_exec('rm ' . $root . '/config/files/.host');
+
+		$io->write("<info>Setup .htaccess</info>");
+		shell_exec('mv ' . $root . '/config/files/.htaccess ' . $root . '/web');
 	}
 
 	

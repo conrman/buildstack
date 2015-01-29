@@ -35,7 +35,7 @@ class Builder {
 			if ($npm) {
 				// Setup Gulp
 				$gulp = file_get_contents($root . "/web/app/themes/$theme/gulpfile.js");
-				$gulp = str_replace('{{site_url}}', $url, $gulp);
+				$gulp = str_replace('{{site_url}}', $site_url, $gulp);
 				file_put_contents($root . "/web/app/themes/$theme/gulpfile.js", $gulp);
 
 				// Setup Flightplan
