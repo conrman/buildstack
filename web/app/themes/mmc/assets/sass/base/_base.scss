@@ -1,0 +1,131 @@
+
+/* Base
+================================================================ */
+
+* {
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-rendering: auto;
+	box-sizing: border-box;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+html, #site-content {
+	overflow-x: hidden;
+}
+
+body {
+	background: $body-background;
+	color: $body-text-color;
+	font-family: $body-font-family;
+	font-size: $small-font-size;
+	line-height: $body-line-height;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease;
+	-o-transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
+	@media (min-width: $breakpoint-3) {
+		font-size: $body-font-size;
+	}
+
+	&.loaded {
+		opacity: 1;
+	}
+}
+
+p {
+	letter-spacing: 0.028em;
+}
+
+address {
+	color: $address-color;
+	font-family: $address-font-family;
+	font-size: $address-font-size;
+	font-style: normal;
+
+	> a, >a span {
+		color: $address-color;
+		letter-spacing: 0.05em;
+	}	
+}
+
+.container {
+	width: $main-width;
+	max-width: $max-width;
+	margin: 0 auto;
+  @include center();
+}
+
+.row {
+	letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
+	*letter-spacing: normal; /* reset IE < 8 */
+	*word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
+	text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
+}
+
+.opera-only :-o-prefocus,
+.row {
+	word-spacing: -0.43em;
+}
+
+body:not(.home) .wrapper {
+	@include center($wrapper-container);
+}
+
+.wrapper {
+	background: $wrapper-background;
+	background-size: cover;
+	background-attachment: fixed;
+	padding: $wrapper-padding;
+	@include center(100%);
+
+	#sidebar {
+		@include col(1);
+		@include unshift();
+		@media (min-width: $breakpoint-3) {
+			@include col($sidebar-width);
+			@include shift($main-content-width);
+		}
+
+		+ #main {
+			@include col(1);
+			@include unshift();
+			@media (min-width: $breakpoint-3) {
+				@include col($main-content-width);
+				@include shift(-$sidebar-width);
+			}
+
+		}
+	}
+}
+
+#main .content {
+	margin: $main-content-margin;
+	padding: $main-content-padding;
+}
+
+h1, h2, h3, h4, h5, h6, hgroup, p, ul, ol, dd, figure, pre, table, fieldset, legend, hr {
+	margin: $base-margin 0;
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+::selection {
+	background-color: $base-selection-background-color;
+	color: $base-selection-text-color;
+	text-shadow: none;
+}
+
+::-moz-selection {
+	background-color: $base-selection-background-color;
+	color: $base-selection-text-color;
+	text-shadow: none;
+}
