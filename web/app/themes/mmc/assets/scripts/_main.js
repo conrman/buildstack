@@ -18,21 +18,16 @@
 
 // Use this variable to set up the common and page specific functions. If you
 // rename this variable, you will also need to rename the namespace below.
-var Roots = {
+var App = {
 	// All pages
 	common: {
 		init: function() {
 
-			// svg fallbacks
+			// SVG fallbacks
 			svgeezy.init(false, 'png');
 
 			$('#sidenav-toggle').sideNav();
-			$('.collapsible').collapsible();
 
-			Roots.common.matchHeight('.project');
-			Roots.common.slider(".slider", {
-				adaptiveHeight: true
-			});
 		},
 		isotope: function(container, options) {
 			var $container = $(container).imagesLoaded( function() {
@@ -49,10 +44,6 @@ var Roots = {
 	home: {
 		init: function() {
 		}
-	},
-	works: {
-		init: function() {
-		}
 	}
 };
 
@@ -60,7 +51,7 @@ var Roots = {
 // Add additional events for more control over timing e.g. a finalize event
 var UTIL = {
 	fire: function(func, funcname, args) {
-		var namespace = Roots;
+		var namespace = App;
 		funcname = (funcname === undefined) ? 'init' : funcname;
 		if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
 			namespace[func][funcname](args);
