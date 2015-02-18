@@ -30,8 +30,8 @@ class Installer {
 			$project_name = $io->ask('<info>What is the name of the project? [<comment>project-name</comment>.dev] ');
 			$db_name = $project_name;
 			$env = 'development';
-			$db_user = 'root';
-			$db_pass = '';
+			$db_user = $io->ask('<info>What is the DB User?</info>[<comment>root</comment>] ', 'root');
+			$db_pass = $io->ask('<info>What is the DB Password?</info> ', '');
 			$url = $project_name . ".dev";
 			$system_user = trim(shell_exec('whoami'));
 		}
