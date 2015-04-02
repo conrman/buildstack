@@ -2,6 +2,8 @@
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
  *
+ * Uses Wordpress body_class() function
+ *
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  *
@@ -16,56 +18,81 @@
 
  (function($) {
 
-// Use this variable to set up the common and page specific functions. If you
-// rename this variable, you will also need to rename the namespace below.
-var App = {
-	// All pages
-	common: {
-		init: function() {
+  // Use this variable to set up the common and page specific functions. If you
+  // rename this variable, you will also need to rename the namespace below.
+  var App = {
+    // All pages
+    'common': {
+      init: function() {
+        // JavaScript to be fired on all pages
+        
+        // SVG fallbacks
+        svgeezy.init(false, 'png');
 
-			// SVG fallbacks
-			svgeezy.init(false, 'png');
+        $('#sidenav-toggle').sideNav();
 
-			$('#sidenav-toggle').sideNav();
+      },
+      finalize: function() {
+        // JavaScript to be fired on all pages, after page specific JS is fired
+      },
+      isotope: function(container, options) {
+        var $container = $(container).imagesLoaded( function() {
+          $container.isotope(options);
+        });
+      },
+      slider: function(target, options) {
+        $(target).slick(options);
+      },
+      matchHeight: function(target) {
+        $(target).matchHeight();
+      }
+    },
+    'home': {
+      init: function() {
+        // JavaScript to be fired on the home page
+      },
+      finalize: function() {
+        // JavaScript to be fired on the home page, after the init JS
+      }
+    },
+    'about': {
+      init: function() {
+        // JavaScript to be fired on the about us page
+      }
+    }
+  };
 
-		},
-		isotope: function(container, options) {
-			var $container = $(container).imagesLoaded( function() {
-				$container.isotope(options);
-			});
-		},
-		slider: function(target, options) {
-			$(target).slick(options);
-		},
-		matchHeight: function(target) {
-			$(target).matchHeight();
-		}
-	},
-	home: {
-		init: function() {
-		}
-	}
-};
+  // The routing fires all common scripts, followed by the page specific scripts.
+  // Add additional events for more control over timing e.g. a finalize event
+  var UTIL = {
+    fire: function(func, funcname, args) {
+      var fire;
+      var namespace = App;
+      funcname = (funcname === undefined) ? 'init' : funcname;
+      fire = func !== '';
+      fire = fire && namespace[func];
+      fire = fire && typeof namespace[func][funcname] === 'function';
 
-// The routing fires all common scripts, followed by the page specific scripts.
-// Add additional events for more control over timing e.g. a finalize event
-var UTIL = {
-	fire: function(func, funcname, args) {
-		var namespace = App;
-		funcname = (funcname === undefined) ? 'init' : funcname;
-		if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
-			namespace[func][funcname](args);
-		}
-	},
-	loadEvents: function() {
-		UTIL.fire('common');
+      if (fire) {
+        namespace[func][funcname](args);
+      }
+    },
+    loadEvents: function() {
+      // Fire common init JS
+      UTIL.fire('common');
 
-		$.each(document.body.className.replace(/-/g, '_').split(/\s+/),function(i,classnm) {
-			UTIL.fire(classnm);
-		});
-	}
-};
+      // Fire page-specific init JS, and then finalize JS
+      $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
+        UTIL.fire(classnm);
+        UTIL.fire(classnm, 'finalize');
+      });
 
-$(document).ready(UTIL.loadEvents);
+      // Fire common finalize JS
+      UTIL.fire('common', 'finalize');
+    }
+  };
+
+  // Load Events
+  $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.

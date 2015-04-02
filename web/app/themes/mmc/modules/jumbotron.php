@@ -1,14 +1,14 @@
 <!-- Jumbotron -->
-<div id="<?php echo $post->post_name; ?>-jumbotron" class="section no-pad-bot">
-	<div class="container">
-		<br><br>
-		<h1 class="header center">Vicky Andres</h1>
-		<div class="row center">
-			<h5 class="header col s12 light">is a motha fuckin' badass</h5>
+<?php if (get_field('use_jumbotron')) : ?>
+	<div id="<?php echo $post->post_name; ?>-jumbotron" class="jumbotron no-pad-bot">
+		<?php if (get_field('use_bg_image')) {
+			$img = get_field('jumbotron_image');
+			echo '<img class="jumbotron-image" src="' . $img['url'] . '">';
+		} ?>
+		<div class="container">
+			<div class="jumbotron-text">
+				<?php the_field('jumbotron_text'); ?>
+			</div>
 		</div>
-		<div class="row center">
-			<a class="btn-large waves-effect waves-dark white black-text" href="/">See for yourself</a>
-		</div>
-		<br><br>
 	</div>
-</div>
+<?php endif; ?>
