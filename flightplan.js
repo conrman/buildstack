@@ -9,13 +9,13 @@ plan.briefing({
 	debug: false,
 	destinations: {
 		'staging': {
-			host: 'mmcstaging.com',
-			username: 'mmcstage',
+			host: 'stage.example.com',
+			username: 'example',
 			releases: 'deployments/{{project_acronym}}',
 			privateKey: process.env.HOME + '/.ssh/id_rsa'
 		},
 		'production': {
-			host: 'hostingbymmc.com',
+			host: 'example.com',
 			username: '{{project_acronym}}',
 			releases: 'deployments',
 			privateKey: process.env.HOME + '/.ssh/id_rsa'
